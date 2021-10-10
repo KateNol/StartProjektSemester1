@@ -1,0 +1,26 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+[application]
+
+config/name="Startprojekt TeamGeist"
+config/description="Startprojekt von \"TeamGeist\" Gruppe DH3
+Autoren:
+	Albrecht, Gregor Friedhelm 1671452
+	Fitze, Alexander  1606253
+	Galinski, Adam   1670822
+	Petrović, Katharina  1671494
+	Rifel, Stefan   1671177
+	Rosendahl, Jannik  1670835"
+config/icon="res://icon.png"
+
+[physics]
+
+common/enable_pause_aware_picking=true
