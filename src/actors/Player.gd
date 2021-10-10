@@ -4,7 +4,7 @@ var direction : Vector2
 var velocity : Vector2
 
 # speeds in pixels / time
-var move_speed : int = 400 / 1
+var move_speed : int = 32*6/.8
 var jump_speed : int = -960
 var gravity : int = 2400
 
