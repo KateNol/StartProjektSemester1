@@ -5,8 +5,8 @@ var velocity : Vector2
 
 # speeds in pixels / time
 var move_speed : int = 400 / 1
-var jump_speed : int = -1300
-var gravity : int = 100
+var jump_speed : int = -960
+var gravity : int = 2400
 
 var jump_timer : Timer
 
@@ -20,12 +20,9 @@ func input_process():
 		direction.x = 1
 	if Input.is_action_just_pressed("jump"):
 		direction.y = -1
-		jump_timer.start()
 
 func _ready():
 	velocity = Vector2()
-	jump_timer = Timer.new()
-	add_child(jump_timer)
 	print("ready")
 
 func _process(delta):
@@ -35,14 +32,14 @@ func _physics_process(delta):
 	input_process()
 	
 	velocity.x = direction.x * move_speed
-	
+	velocity.y += gravity * delta
 	
 	if direction.y == -1 and is_on_floor():
 		print("jump")
 		velocity.y = jump_speed
 	
 	
-	velocity.y += gravity
+
 
 	velocity = move_and_slide(velocity, Vector2.UP)
 
