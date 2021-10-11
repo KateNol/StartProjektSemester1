@@ -8,6 +8,10 @@ var move_speed : int = 32*8/.8
 var jump_speed : int = -960
 var gravity : int = 2400
 
+# keep these values between 0-1
+var friction : float = 0.25
+var acceleration : float = 0.1
+
 var jump_edge_tolerance : float = .1
 var time_since_last_grounded : float
 
@@ -45,7 +49,13 @@ func _process(delta):
 func _physics_process(delta):
 	input_process(delta)
 	
-	velocity.x = direction.x * move_speed
+	# velocity.x = direction.x * move_speed
+	if direction.x != 0:
+		velocity.x = lerp(velocity.x, direction.x * move_speed, acceleration)
+	else:
+		velocity.x = lerp(velocity.x, 0, friction)
+	
+	
 	velocity.y += gravity * delta
 	
 	time_since_last_grounded += delta
