@@ -4,7 +4,7 @@ var direction : Vector2
 var velocity : Vector2
 
 # speeds in pixels / time
-var move_speed : int = 32*6/.8
+var move_speed : int = 32*8/.8
 var jump_speed : int = -960
 var gravity : int = 2400
 
@@ -13,6 +13,7 @@ var time_since_last_grounded : float
 
 var jump_fall_tolerance : float = .2
 var time_since_last_jump_input : float
+var time_since_last_air_jump : float
 
 
 var terminate_jump : bool
@@ -47,16 +48,19 @@ func _physics_process(delta):
 	velocity.x = direction.x * move_speed
 	velocity.y += gravity * delta
 	
+	time_since_last_grounded += delta
+	time_since_last_air_jump += delta
+	
 	if is_on_floor():
 		time_since_last_grounded = 0
 		# jump even if jump input was when player was still in air
-		if time_since_last_jump_input < jump_fall_tolerance:
-			print("air-jump with tolerance time: ", str(time_since_last_jump_input))
+		if (time_since_last_jump_input < jump_fall_tolerance) and (time_since_last_air_jump > 1):
+			print("air-jump")
 			velocity.y = jump_speed
-	else:
-		time_since_last_grounded += delta
+			time_since_last_air_jump = 0
 	# jump, normal
 	if direction.y == -1 and is_on_floor():
+		print("normal")
 		velocity.y = jump_speed
 	# jump even if player is not on floor
 	if direction.y == -1 and time_since_last_grounded < jump_edge_tolerance and not is_on_floor():
