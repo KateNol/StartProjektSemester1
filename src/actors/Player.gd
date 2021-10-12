@@ -4,13 +4,13 @@ var direction : Vector2
 var velocity : Vector2
 
 # speeds in pixels / time
-var move_speed : int = 32*8/.8
-var jump_speed : int = -960
-var gravity : int = 2400
+var move_speed : int = 32*6/.8
+var jump_speed : int = -640
+var gravity : int = 1600
 
 # keep these values between 0-1
 var friction : float = 0.25
-var acceleration : float = 0.1
+var acceleration : float = 0.4
 
 var jump_edge_tolerance : float = .1
 var time_since_last_grounded : float

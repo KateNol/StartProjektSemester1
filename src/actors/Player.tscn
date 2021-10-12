@@ -16,17 +16,8 @@ vframes = 2
 frame = 16
 
 [node name="Camera2D" type="Camera2D" parent="."]
+current = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -3.92648, 0.702332 )
 shape = SubResource( 1 )
-
-[node name="Label" type="Label" parent="."]
-margin_left = 7.68639
-margin_top = -27.5806
-margin_right = 47.6864
-margin_bottom = -13.5806
-text = "test"
-__meta__ = {
-"_edit_use_anchors_": false
-}
