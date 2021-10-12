@@ -10,16 +10,22 @@ config_version=4
 
 [application]
 
-config/name="Startprojekt TeamGeist"
-config/description="Startprojekt von \"TeamGeist\" Gruppe DH3
-Autoren:
-	Albrecht, Gregor Friedhelm 1671452
-	Fitze, Alexander  1606253
-	Galinski, Adam   1670822
-	Petrović, Katharina  1671494
-	Rifel, Stefan   1671177
-	Rosendahl, Jannik  1670835"
+config/name="playground"
+run/main_scene="res://Map.tscn"
 config/icon="res://icon.png"
+
+[display]
+
+window/stretch/mode="2d"
+window/stretch/aspect="keep"
+
+[gdnative]
+
+singletons=[  ]
+
+[global]
+
+fps=false
 
 [input]
 
@@ -40,13 +46,20 @@ jump={
 }
 quit={
 "deadzone": 0.5,
-"events": [  ]
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777217,"unicode":0,"echo":false,"script":null)
+ ]
 }
 change_fps={
 "deadzone": 0.5,
-"events": [  ]
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":80,"unicode":0,"echo":false,"script":null)
+ ]
 }
 
 [physics]
 
 common/enable_pause_aware_picking=true
+2d/default_gravity=900
+
+[rendering]
+
+environment/default_environment="res://default_env.tres"
