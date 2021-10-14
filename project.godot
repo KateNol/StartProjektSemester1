@@ -63,3 +63,7 @@ change_fps={
 [physics]
 
 common/enable_pause_aware_picking=true
+
+[rendering]
+
+environment/default_clear_color=Color( 0.407843, 0.407843, 0.407843, 1 )
