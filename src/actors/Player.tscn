@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://assets/actors/godot_robot.png" type="Texture" id=1]
 [ext_resource path="res://src/actors/Player.gd" type="Script" id=2]
@@ -6,11 +6,12 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 10, 13.4553 )
 
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 9.8125, 3.625 )
+
 [node name="KinematicBody2D" type="KinematicBody2D"]
+position = Vector2( -1.4375, -6.625 )
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
@@ -21,5 +22,12 @@ frame = 16
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2( -3.92648, 0.702332 )
 shape = SubResource( 1 )
+
+[node name="HItbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HItbox"]
+position = Vector2( -3.875, 10.4375 )
+shape = SubResource( 2 )

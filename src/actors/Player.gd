@@ -20,6 +20,7 @@ func input_process():
 		direction.x = 1
 	if Input.is_action_just_pressed("jump"):
 		direction.y = -1
+	
 
 func _ready():
 	velocity = Vector2()
@@ -27,6 +28,7 @@ func _ready():
 
 func _process(delta):
 	pass
+	
 
 func _physics_process(delta):
 	input_process()
@@ -37,11 +39,16 @@ func _physics_process(delta):
 	if direction.y == -1 and is_on_floor():
 		print("jump")
 		velocity.y = jump_speed
-	
-	
-
+		
+	#check_for_stomp()
 
 	velocity = move_and_slide(velocity, Vector2.UP)
 
 func on_timer_timeout():
 	pass
+
+#func check_for_stomp():
+	#for body in $Hitbox.get_overlapping_bodies():
+		#if body.has_method("on_stomp") and body.is_alive:
+			#body.on_stomp()
+			#direction.y = -jump_speed
