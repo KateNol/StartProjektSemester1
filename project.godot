@@ -11,8 +11,12 @@ config_version=4
 [application]
 
 config/name="startprojektteamgeist"
-run/main_scene="res://src/levels/Map.tscn"
+run/main_scene="res://src/Scenes/Game.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+G="*res://src/Scripts/Global.gd"
 
 [display]
 
