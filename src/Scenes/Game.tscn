@@ -38,7 +38,9 @@ func check_for_door():
 	if G.next_level_door != null:
 		var door = level.find_node(G.next_level_door)
 		player.position = door.position
-		G.next_level_door = null"
+		G.next_level_door = null
+
+"
 
 [node name="Game" type="Node2D"]
 script = SubResource( 1 )
