@@ -12,4 +12,10 @@ func _process(delta):
 	pass
 
 func _physics_process(delta):
-	move_and_collide(direction*move_speed*delta)
+	var collision = move_and_collide(direction*move_speed*delta)
+	if(collision != null):
+		#print("I collided with ", collision.collider.name)
+		if(collision.collider.has_method("on_stomp")):
+			#print("killing enemy")
+			collision.collider.on_stomp()
+		queue_free()
