@@ -26,6 +26,8 @@ var double_jump : bool
 
 var attack : bool = false
 
+const stomp_velocity : int = -300
+
 func input_process(delta):
 	direction = Vector2()
 	terminate_jump = false
@@ -34,11 +36,13 @@ func input_process(delta):
 	if Input.is_action_pressed("move_left"):
 		direction.x = -1
 		last_look_direction.x = -1
-		$Sprite.flip_h = true
+		$AnimatedSprite.flip_h = true
+		$AnimatedSprite.offset.x = -20
 	if Input.is_action_pressed("move_right"):
 		direction.x = 1
 		last_look_direction.x = 1
-		$Sprite.flip_h = false
+		$AnimatedSprite.flip_h = false
+		$AnimatedSprite.offset.x = 0
 	if Input.is_action_just_pressed("jump"):
 		direction.y = -1
 	if Input.is_action_just_released("jump"):
@@ -114,6 +118,18 @@ func _physics_process(delta):
 		var b = FireBall.instance()
 		b.position = self.position
 		b.direction = self.last_look_direction
+		b.add_to_group("PlayerWeapon")
 		get_tree().current_scene.add_child(b)
 		
 	velocity = move_and_slide(velocity, Vector2.UP)
+
+func die():
+	queue_free()
+
+func _on_EnemyDetector_body_entered(body):
+	print(body.name, " entered player body")
+	die()
+
+func _on_StompDetector_area_entered(area):
+	print("stomping ", area.name)
+	velocity.y = stomp_velocity
