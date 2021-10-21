@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://assets/tilesets/godot_test_tileset.png" type="Texture" id=1]
 [ext_resource path="res://src/actors/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/levels/Map.gd" type="Script" id=3]
 [ext_resource path="res://src/actors/Enemy1.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/actors/Enemys/Knight.tscn" type="PackedScene" id=5]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 32, 32, 0, 32, 0, 0, 32, 0 )
@@ -182,3 +183,8 @@ __meta__ = {
 
 [node name="Node2D" parent="." instance=ExtResource( 4 )]
 position = Vector2( 474, 383 )
+
+[node name="Knight" parent="." instance=ExtResource( 5 )]
+position = Vector2( 827.939, 157.926 )
+collision_layer = 3
+collision_mask = 0
