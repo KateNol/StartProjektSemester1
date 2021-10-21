@@ -1,5 +1,5 @@
 extends KinematicBody2D
-const FireBall = preload("res://src/actors/FireBall.tscn")
+const FireBall = preload("res://src/actors/Player/FireBall.tscn")
 
 var direction : Vector2
 var velocity : Vector2
