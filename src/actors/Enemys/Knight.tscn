@@ -1,0 +1,160 @@
+[gd_scene load_steps=26 format=2]
+
+[ext_resource path="res://assets/actors/Knight/hero-idle/hero-idle-1.png" type="Texture" id=1]
+[ext_resource path="res://assets/actors/Knight/hero-run/hero-run-1.png" type="Texture" id=2]
+[ext_resource path="res://assets/actors/Knight/hero-attack/hero-attack-5.png" type="Texture" id=3]
+[ext_resource path="res://assets/actors/Knight/hero-attack/hero-attack-3.png" type="Texture" id=4]
+[ext_resource path="res://assets/actors/Knight/hero-attack/hero-attack-2.png" type="Texture" id=5]
+[ext_resource path="res://assets/actors/Knight/hero-run/hero-run-3.png" type="Texture" id=6]
+[ext_resource path="res://assets/actors/Knight/hero-jump/hero-jump-2.png" type="Texture" id=7]
+[ext_resource path="res://assets/actors/Knight/hero-attack/hero-attack-1.png" type="Texture" id=8]
+[ext_resource path="res://assets/actors/Knight/hero-idle/hero-idle-2.png" type="Texture" id=9]
+[ext_resource path="res://assets/actors/Knight/hero-run/hero-run-5.png" type="Texture" id=10]
+[ext_resource path="res://assets/actors/Knight/hero-idle/hero-idle-4.png" type="Texture" id=11]
+[ext_resource path="res://assets/actors/Knight/hero-run/hero-run-4.png" type="Texture" id=12]
+[ext_resource path="res://assets/actors/Knight/hero-run/hero-run-6.png" type="Texture" id=13]
+[ext_resource path="res://assets/actors/Knight/hero-run/hero-run-2.png" type="Texture" id=14]
+[ext_resource path="res://assets/actors/Knight/hero-hurt/hero-hurt.png" type="Texture" id=15]
+[ext_resource path="res://assets/actors/Knight/hero-idle/hero-idle-3.png" type="Texture" id=16]
+[ext_resource path="res://assets/actors/Knight/hero-jump/hero-jump-1.png" type="Texture" id=17]
+[ext_resource path="res://assets/actors/Knight/hero-jump/hero-jump-4.png" type="Texture" id=18]
+[ext_resource path="res://assets/actors/Knight/hero-jump/hero-jump-3.png" type="Texture" id=19]
+[ext_resource path="res://assets/actors/Knight/hero-attack/hero-attack-4.png" type="Texture" id=20]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends KinematicBody2D
+
+const move_speed : float = 32 * 2 / .8 
+const jump_speed : int = -400
+const gravity : int = 1600
+const up_vector = Vector2(0, -1)
+
+var direction = Vector2(move_speed, 0)
+var velocity = Vector2(0, 1)  
+
+var jump_x = 0
+
+var is_alive = true # Überprüft ob der Gegner noch am leben ist
+
+
+
+func _ready():
+	pass
+
+
+func _physics_process(delta):
+	if is_alive == false:
+		return
+		
+	direction.y += gravity * delta #Das er durch die Gravität auf dem Boden ist
+	
+	move_and_slide_with_snap(direction, velocity, up_vector) #Laufrichtung
+	
+	if is_on_floor():
+		if $AnimatedSprite.animation == \"jump\":
+			on_landing()
+		else:
+			direction.y = 0
+			if is_on_wall():
+				jump()
+
+# Spring über ein Hindernis
+func jump():
+	$AnimatedSprite.play(\"jump\")
+	direction.y = jump_speed
+	jump_x = floor(position.x)
+
+# Was er nach dem Sprung tut
+func on_landing():
+	$AnimatedSprite.play(\"run\")
+	if floor(position.x) == jump_x:
+		turn()
+
+# Wenn er gegen eine Wand läuft dreht er um
+func turn():
+	if is_on_wall():
+		direction.x *= -1
+		$AnimatedSprite.flip_h = !$AnimatedSprite.flip_h
+
+# Gegner stirbt
+func on_stomp():
+	$AnimatedSprite.play(\"dead\")
+	is_alive = false
+	
+# Entfernt Gegner beim sterben
+func animation_finished():
+	if $AnimatedSprite.animation == \"dead\":
+		queue_free()
+"
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 1 ), ExtResource( 9 ), ExtResource( 16 ), ExtResource( 11 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 15 ) ],
+"loop": true,
+"name": "dead",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 19 ), ExtResource( 17 ), ExtResource( 7 ), ExtResource( 18 ) ],
+"loop": true,
+"name": "jump",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 8 ), ExtResource( 5 ), ExtResource( 4 ), ExtResource( 20 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "attack",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ), ExtResource( 14 ), ExtResource( 6 ), ExtResource( 12 ), ExtResource( 10 ), ExtResource( 13 ) ],
+"loop": true,
+"name": "run",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 13.6981, 21.2657 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 13.6108, 11.8457 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 14.9006, 4.50394 )
+
+[node name="Knight" type="KinematicBody2D"]
+collision_layer = 4
+collision_mask = 8
+script = SubResource( 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 2 )
+animation = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 3.04229, 8.70154 )
+shape = SubResource( 3 )
+
+[node name="Playerdetector" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Playerdetector"]
+position = Vector2( 32.0457, 3.77008 )
+shape = SubResource( 4 )
+
+[node name="Timer" type="Timer" parent="Playerdetector"]
+wait_time = 5.0
+
+[node name="SchwertHitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SchwertHitbox"]
+position = Vector2( 31.748, 2.97638 )
+shape = SubResource( 5 )
+
+[connection signal="animation_finished" from="AnimatedSprite" to="." method="animation_finished"]
+[connection signal="body_entered" from="Playerdetector" to="." method="_on_Playerdetector_body_entered"]
+[connection signal="body_exited" from="Playerdetector" to="." method="_on_Playerdetector_body_exited"]
+[connection signal="timeout" from="Playerdetector/Timer" to="." method="_on_Timer_timeout"]
