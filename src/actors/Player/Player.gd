@@ -1,6 +1,13 @@
 extends KinematicBody2D
 const FireBall = preload("res://src/actors/Player/FireBall.tscn")
 
+
+""" SECTION VARIABLE DEFINITIONS """
+
+var hitpoints : int
+var is_alive : bool
+var is_stompable : bool = false
+
 var direction : Vector2
 var velocity : Vector2
 var last_look_direction : Vector2
@@ -28,6 +35,47 @@ var attack : bool = false
 
 const stomp_velocity : int = -300
 
+
+""" SECTION OVERRIDE FUNCTIONS """
+
+func _ready():
+	velocity = Vector2()
+	last_look_direction = Vector2(1, 0)
+	
+	hitpoints = 10
+	is_alive = true
+	
+	print("ready")
+
+func _process(delta):
+	input_process(delta)
+	attack_process()
+	
+	if direction.y != -1:
+		time_since_last_jump_input += delta
+	time_since_last_grounded += delta
+	time_since_last_air_jump += delta
+
+func _physics_process(delta):
+	jump_process()
+	
+	# update horizontal velocity
+	# horizontal movement linear interpolation
+	# velocity.x = direction.x * move_speed
+	if direction.x != 0:
+		velocity.x = lerp(velocity.x, direction.x * move_speed, acceleration)
+	else:
+		velocity.x = lerp(velocity.x, 0, friction)
+	
+	# update vertical velocity
+	velocity.y += gravity * delta
+	
+	
+	velocity = move_and_slide(velocity, Vector2.UP)
+
+
+""" SECTION CUSTOM FUNCTIONS """
+
 func input_process(delta):
 	direction = Vector2()
 	terminate_jump = false
@@ -47,40 +95,13 @@ func input_process(delta):
 		direction.y = -1
 	if Input.is_action_just_released("jump"):
 		terminate_jump = true
-	#if Input.is_action_just_pressed("duck"):
-	#	last_look_direction.y = 1
 	if Input.is_action_just_pressed("attack"):
 		attack = true
 	
 	if direction.length() == 0:
 		last_look_direction.y = 0
 
-func _ready():
-	velocity = Vector2()
-	last_look_direction = Vector2(1, 0)
-	print("ready")
-
-func _process(delta):
-	pass
-
-func _physics_process(delta):
-	input_process(delta)
-	
-	# velocity.x = direction.x * move_speed
-	if direction.x != 0:
-		velocity.x = lerp(velocity.x, direction.x * move_speed, acceleration)
-	else:
-		velocity.x = lerp(velocity.x, 0, friction)
-	
-	if direction.y != -1:
-		time_since_last_jump_input += delta
-	
-	velocity.y += gravity * delta
-	
-	time_since_last_grounded += delta
-	time_since_last_air_jump += delta
-	
-	
+func jump_process():
 	# jump, normal
 	if direction.y == -1 and is_on_floor():
 		print("normal")
@@ -113,18 +134,20 @@ func _physics_process(delta):
 		# jump only "cancelable" during ascend
 		if velocity.y < 0:
 			velocity.y = 0
-	
+
+func attack_process():
 	if attack:
 		var b = FireBall.instance()
 		b.position = self.position
 		b.direction = self.last_look_direction
 		b.add_to_group("PlayerWeapon")
 		get_tree().current_scene.add_child(b)
-		
-	velocity = move_and_slide(velocity, Vector2.UP)
 
 func die():
 	queue_free()
+
+
+""" SECTION SIGNAL FUNCTIONS """
 
 func _on_EnemyDetector_body_entered(body):
 	print(body.name, " entered player body")
