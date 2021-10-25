@@ -156,8 +156,8 @@ func on_stomp():
 
 func _on_EnemyDetector_body_entered(body):
 	print(body.name, " entered player body")
-	die()
+	# die()
 
 func _on_StompDetector_area_entered(area):
 	print("stomping ", area.name)
-	velocity.y = stomp_velocity
+	# velocity.y = stomp_velocity

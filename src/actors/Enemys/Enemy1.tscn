@@ -60,14 +60,14 @@ func _on_AnimatedSprite_animation_finished():
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
-"frames": [ ExtResource( 3 ), ExtResource( 5 ), ExtResource( 4 ), ExtResource( 1 ), ExtResource( 6 ), ExtResource( 8 ), ExtResource( 7 ), ExtResource( 2 ) ],
-"loop": true,
-"name": "walk",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 13 ), ExtResource( 13 ), ExtResource( 13 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ) ],
 "loop": true,
 "name": "dead",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ), ExtResource( 5 ), ExtResource( 4 ), ExtResource( 1 ), ExtResource( 6 ), ExtResource( 8 ), ExtResource( 7 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "walk",
 "speed": 5.0
 } ]
 
@@ -77,13 +77,15 @@ extents = Vector2( 13.047, 22.6729 )
 [node name="Node2D" type="Node2D"]
 
 [node name="Enemy1" type="KinematicBody2D" parent="."]
+collision_layer = 9
+collision_mask = 6
 script = SubResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Enemy1"]
 position = Vector2( 0.18729, 0 )
 frames = SubResource( 2 )
 animation = "dead"
-frame = 5
+frame = 2
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy1"]
