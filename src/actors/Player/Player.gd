@@ -146,6 +146,11 @@ func attack_process():
 func die():
 	queue_free()
 
+func take_damage(n : int):
+	pass
+
+func on_stomp():
+	pass
 
 """ SECTION SIGNAL FUNCTIONS """
 
