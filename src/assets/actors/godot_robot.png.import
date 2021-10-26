@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/godot_robot.png-04524a175c858842ec1c8ebb60a91034.stex"
+path="res://.import/godot_robot.png-a9abdba217f91f9bdca78afc225d0c14.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/assets/actors/godot_robot.png"
-dest_files=[ "res://.import/godot_robot.png-04524a175c858842ec1c8ebb60a91034.stex" ]
+source_file="res://src/Assets/actors/godot_robot.png"
+dest_files=[ "res://.import/godot_robot.png-a9abdba217f91f9bdca78afc225d0c14.stex" ]
 
 [params]
 

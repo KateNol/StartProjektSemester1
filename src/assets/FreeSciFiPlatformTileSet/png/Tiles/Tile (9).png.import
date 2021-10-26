@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Tile (9).png-903436082d2d0b7694491b8997b82708.stex"
+path="res://.import/Tile (9).png-3002b2d93582b3c0a464b4f70a47925e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/assets/FreeSciFiPlatformTileSet/png/Tiles/Tile (9).png"
-dest_files=[ "res://.import/Tile (9).png-903436082d2d0b7694491b8997b82708.stex" ]
+source_file="res://src/Assets/FreeSciFiPlatformTileSet/png/Tiles/Tile (9).png"
+dest_files=[ "res://.import/Tile (9).png-3002b2d93582b3c0a464b4f70a47925e.stex" ]
 
 [params]
 

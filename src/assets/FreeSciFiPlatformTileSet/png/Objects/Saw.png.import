@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Saw.png-5b92cc364bb63b0cfec3b4802aa35c41.stex"
+path="res://.import/Saw.png-9463fd868cda54e18b067b96dc34aeb5.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/assets/FreeSciFiPlatformTileSet/png/Objects/Saw.png"
-dest_files=[ "res://.import/Saw.png-5b92cc364bb63b0cfec3b4802aa35c41.stex" ]
+source_file="res://src/Assets/FreeSciFiPlatformTileSet/png/Objects/Saw.png"
+dest_files=[ "res://.import/Saw.png-9463fd868cda54e18b067b96dc34aeb5.stex" ]
 
 [params]
 

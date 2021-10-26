@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/DoorOpenResized.png-345656a97cb3e30de991994c6c597c52.stex"
+path="res://.import/DoorOpenResized.png-0a3a89ae85808dd2a7c4187b9cf0b171.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/assets/FreeSciFiPlatformTileSet/png/Objects/DoorOpenResized.png"
-dest_files=[ "res://.import/DoorOpenResized.png-345656a97cb3e30de991994c6c597c52.stex" ]
+source_file="res://src/Assets/FreeSciFiPlatformTileSet/png/Objects/DoorOpenResized.png"
+dest_files=[ "res://.import/DoorOpenResized.png-0a3a89ae85808dd2a7c4187b9cf0b171.stex" ]
 
 [params]
 
