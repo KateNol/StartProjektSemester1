@@ -4,6 +4,13 @@ const FireBall = preload("res://src/actors/Player/FireBall.tscn")
 
 """ SECTION VARIABLE DEFINITIONS """
 
+enum ANIMATION_STATES { IDLE, RUN, HURT, JUMP, DEATH, ATTACK }
+var animation_state  = ANIMATION_STATES.IDLE
+
+var is_jumping : bool
+var is_attacking : bool
+var is_moving : bool
+
 var hitpoints : int
 var is_alive : bool
 var is_stompable : bool = false
@@ -70,6 +77,14 @@ func _physics_process(delta):
 	# update vertical velocity
 	velocity.y += gravity * delta
 	
+	update_animation()
+	
+	
+	animation_state = ANIMATION_STATES.IDLE if direction.x == 0 else ANIMATION_STATES.RUN
+	animation_state = animation_state if is_on_floor() else ANIMATION_STATES.JUMP
+	if attack:
+		animation_state = ANIMATION_STATES.ATTACK
+	is_jumping = false if is_on_floor() else true
 	
 	velocity = move_and_slide(velocity, Vector2.UP)
 
@@ -84,13 +99,13 @@ func input_process(delta):
 	if Input.is_action_pressed("move_left"):
 		direction.x = -1
 		last_look_direction.x = -1
-		$AnimatedSprite.flip_h = true
-		$AnimatedSprite.offset.x = -20
+		#$AnimatedSprite.flip_h = true
+		#$AnimatedSprite.offset.x = -20
 	if Input.is_action_pressed("move_right"):
 		direction.x = 1
 		last_look_direction.x = 1
-		$AnimatedSprite.flip_h = false
-		$AnimatedSprite.offset.x = 0
+		#$AnimatedSprite.flip_h = false
+		#$AnimatedSprite.offset.x = 0
 	if Input.is_action_just_pressed("jump"):
 		direction.y = -1
 	if Input.is_action_just_released("jump"):
@@ -151,6 +166,30 @@ func take_damage(n : int):
 
 func on_stomp():
 	pass
+
+func update_animation():
+	match animation_state:
+		ANIMATION_STATES.IDLE:
+			$AnimatedSprite.play("idle")
+		ANIMATION_STATES.RUN:
+			$AnimatedSprite.play("move")
+		ANIMATION_STATES.JUMP:
+			$AnimatedSprite.play("jump")
+		ANIMATION_STATES.ATTACK:
+			print("animation attack")
+			is_attacking = true
+			$AnimatedSprite.play("attack1")
+	
+	if direction.x == -1:
+		$AnimatedSprite.flip_h = true
+		$AnimatedSprite.offset.x = -20
+	if direction.x == 1:
+		$AnimatedSprite.flip_h = false
+		$AnimatedSprite.offset.x = 0
+	
+	$Camera2D/InfoLabel.text = "is_moving: " + str(is_moving) + "\nis_jumping: " + str(is_jumping) + "\nis_attacking: " + str(is_attacking)
+	
+
 
 """ SECTION SIGNAL FUNCTIONS """
 
