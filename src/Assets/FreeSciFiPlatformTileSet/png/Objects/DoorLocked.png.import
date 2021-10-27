@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/DoorLocked.png-409790fa4d23c457663e944bcd5a9576.stex"
+path="res://.import/DoorLocked.png-33f0a4b18ee7f55f2d78af71ea9d291c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/Assets/FreeSciFiPlatformTileSet/png/Objects/DoorLocked.png"
-dest_files=[ "res://.import/DoorLocked.png-409790fa4d23c457663e944bcd5a9576.stex" ]
+source_file="res://src/Assets/freeSciFiPlatformTileSet/png/Objects/DoorLocked.png"
+dest_files=[ "res://.import/DoorLocked.png-33f0a4b18ee7f55f2d78af71ea9d291c.stex" ]
 
 [params]
 

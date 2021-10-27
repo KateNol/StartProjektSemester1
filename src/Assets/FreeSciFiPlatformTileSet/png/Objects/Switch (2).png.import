@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Switch (2).png-f07a91577f75f2463a480584ab5a2a7a.stex"
+path="res://.import/Switch (2).png-9fec474964d28ff3bd71b12c85c0fa4b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/Assets/FreeSciFiPlatformTileSet/png/Objects/Switch (2).png"
-dest_files=[ "res://.import/Switch (2).png-f07a91577f75f2463a480584ab5a2a7a.stex" ]
+source_file="res://src/Assets/freeSciFiPlatformTileSet/png/Objects/Switch (2).png"
+dest_files=[ "res://.import/Switch (2).png-9fec474964d28ff3bd71b12c85c0fa4b.stex" ]
 
 [params]
 

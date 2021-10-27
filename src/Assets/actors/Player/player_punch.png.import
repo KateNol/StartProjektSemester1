@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/player_punch.png-0183087f011c9194dd4643053d7dd68c.stex"
+path="res://.import/player_punch.png-8fd7491dc2e855a3e7a0e863adb75b11.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/Assets/actors/Player/player_punch.png"
-dest_files=[ "res://.import/player_punch.png-0183087f011c9194dd4643053d7dd68c.stex" ]
+source_file="res://assets/actors/Player/player_punch.png"
+dest_files=[ "res://.import/player_punch.png-8fd7491dc2e855a3e7a0e863adb75b11.stex" ]
 
 [params]
 
