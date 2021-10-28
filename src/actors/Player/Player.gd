@@ -38,7 +38,9 @@ var time_since_last_air_jump : float
 var terminate_jump : bool
 var double_jump : bool
 
+const attack_cooldown : float = .4
 var attack : bool = false
+var attack_timer : Timer
 
 const stomp_velocity : int = -300
 
@@ -86,6 +88,8 @@ func _physics_process(delta):
 		animation_state = ANIMATION_STATES.ATTACK
 	is_jumping = false if is_on_floor() else true
 	
+	is_moving = direction.length() != 0
+	
 	velocity = move_and_slide(velocity, Vector2.UP)
 
 
@@ -111,7 +115,8 @@ func input_process(delta):
 	if Input.is_action_just_released("jump"):
 		terminate_jump = true
 	if Input.is_action_just_pressed("attack"):
-		attack = true
+		if not is_attacking:
+			attack = true
 	
 	if direction.length() == 0:
 		last_look_direction.y = 0
@@ -168,17 +173,27 @@ func on_stomp():
 	pass
 
 func update_animation():
+	#if $AnimatedSprite.animation != "attack1":
 	match animation_state:
 		ANIMATION_STATES.IDLE:
-			$AnimatedSprite.play("idle")
+			if not is_attacking:
+				$AnimatedSprite.play("idle")
 		ANIMATION_STATES.RUN:
-			$AnimatedSprite.play("move")
+			if not is_attacking:
+				$AnimatedSprite.play("move")
 		ANIMATION_STATES.JUMP:
-			$AnimatedSprite.play("jump")
+			if not is_attacking:
+				$AnimatedSprite.play("jump")
 		ANIMATION_STATES.ATTACK:
 			print("animation attack")
 			is_attacking = true
 			$AnimatedSprite.play("attack1")
+			attack_timer = Timer.new()
+			attack_timer.one_shot = true
+			attack_timer.wait_time = attack_cooldown
+			attack_timer.connect("timeout", self, "attack_timer_timeout")
+			add_child(attack_timer)
+			attack_timer.start()
 	
 	if direction.x == -1:
 		$AnimatedSprite.flip_h = true
@@ -192,6 +207,10 @@ func update_animation():
 
 
 """ SECTION SIGNAL FUNCTIONS """
+
+func attack_timer_timeout():
+	print("attack finished")
+	is_attacking = false
 
 func _on_EnemyDetector_body_entered(body):
 	print(body.name, " entered player body")
