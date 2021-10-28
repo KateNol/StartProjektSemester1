@@ -10,6 +10,7 @@ var animation_state  = ANIMATION_STATES.IDLE
 var is_jumping : bool
 var is_attacking : bool
 var is_moving : bool
+var is_hurt : bool
 
 var hitpoints : int
 var is_alive : bool
@@ -41,6 +42,9 @@ var double_jump : bool
 const attack_cooldown : float = .4
 var attack : bool = false
 var attack_timer : Timer
+
+var hurt_timer : Timer
+const invincible_cooldown : float = .2
 
 const stomp_velocity : int = -300
 
@@ -117,6 +121,9 @@ func input_process(delta):
 	if Input.is_action_just_pressed("attack"):
 		if not is_attacking:
 			attack = true
+	if Input.is_action_just_pressed("hit_self"):
+		print("ow")
+		take_damage(1)
 	
 	if direction.length() == 0:
 		last_look_direction.y = 0
@@ -167,25 +174,26 @@ func die():
 	queue_free()
 
 func take_damage(n : int):
-	pass
+	animation_state = ANIMATION_STATES.HURT
+	hitpoints -= n
+	if hitpoints < 0:
+		die()
 
 func on_stomp():
 	pass
 
 func update_animation():
-	#if $AnimatedSprite.animation != "attack1":
+	if is_attacking or is_hurt:
+		return
+
 	match animation_state:
 		ANIMATION_STATES.IDLE:
-			if not is_attacking:
-				$AnimatedSprite.play("idle")
+			$AnimatedSprite.play("idle")
 		ANIMATION_STATES.RUN:
-			if not is_attacking:
-				$AnimatedSprite.play("move")
+			$AnimatedSprite.play("move")
 		ANIMATION_STATES.JUMP:
-			if not is_attacking:
-				$AnimatedSprite.play("jump")
+			$AnimatedSprite.play("jump")
 		ANIMATION_STATES.ATTACK:
-			print("animation attack")
 			is_attacking = true
 			$AnimatedSprite.play("attack1")
 			attack_timer = Timer.new()
@@ -194,6 +202,15 @@ func update_animation():
 			attack_timer.connect("timeout", self, "attack_timer_timeout")
 			add_child(attack_timer)
 			attack_timer.start()
+		ANIMATION_STATES.HURT:
+			is_hurt = true
+			$AnimatedSprite.play("hurt")
+			hurt_timer = Timer.new()
+			hurt_timer.one_shot = true
+			hurt_timer.wait_time = invincible_cooldown
+			hurt_timer.connect("timeout", self, "hurt_timer_timeout")
+			add_child(hurt_timer)
+			hurt_timer.start()
 	
 	if direction.x == -1:
 		$AnimatedSprite.flip_h = true
@@ -202,7 +219,7 @@ func update_animation():
 		$AnimatedSprite.flip_h = false
 		$AnimatedSprite.offset.x = 0
 	
-	$Camera2D/InfoLabel.text = "is_moving: " + str(is_moving) + "\nis_jumping: " + str(is_jumping) + "\nis_attacking: " + str(is_attacking)
+	$Camera2D/InfoLabel.text = "is_moving: " + str(is_moving) + "\nis_jumping: " + str(is_jumping) + "\nis_attacking: " + str(is_attacking) + "\nhp: " + str(hitpoints)
 	
 
 
@@ -211,6 +228,10 @@ func update_animation():
 func attack_timer_timeout():
 	print("attack finished")
 	is_attacking = false
+
+func hurt_timer_timeout():
+	print("hurt finished")
+	is_hurt = false
 
 func _on_EnemyDetector_body_entered(body):
 	print(body.name, " entered player body")
