@@ -1,7 +1,8 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://src/actors/pplayer/FireBall.gd" type="Script" id=1]
+[ext_resource path="res://src/actors/player/FireBall.gd" type="Script" id=1]
 [ext_resource path="res://src/assets/actors/Enemy1/dead/enemy-death-1.png" type="Texture" id=2]
+
 
 
 
