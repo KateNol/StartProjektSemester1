@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Acid (2).png-f2c257ba9e3fec640bc426a1ef590a1b.stex"
+path="res://.import/Acid (2).png-1d9ed65c500a3fba5ecec44d432e57a5.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/Assets/freeSciFiPlatformTileSet/png/Tiles/Acid (2).png"
-dest_files=[ "res://.import/Acid (2).png-f2c257ba9e3fec640bc426a1ef590a1b.stex" ]
+source_file="res://src/assets/FreeSciFiPlatformTileSet/png/Tiles/Acid (2).png"
+dest_files=[ "res://.import/Acid (2).png-1d9ed65c500a3fba5ecec44d432e57a5.stex" ]
 
 [params]
 

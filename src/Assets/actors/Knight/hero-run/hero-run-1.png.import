@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/hero-run-1.png-552b3a4e408bb7d807c842a1ebf69366.stex"
+path="res://.import/hero-run-1.png-9715c09c93a06581f0dba3dffb1a139a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/Assets/actors/Knight/hero-run/hero-run-1.png"
-dest_files=[ "res://.import/hero-run-1.png-552b3a4e408bb7d807c842a1ebf69366.stex" ]
+source_file="res://src/assets/actors/Knight/hero-run/hero-run-1.png"
+dest_files=[ "res://.import/hero-run-1.png-9715c09c93a06581f0dba3dffb1a139a.stex" ]
 
 [params]
 

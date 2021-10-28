@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/skeleton-rise-3.png-4273ac616e03d65cbabbf82e1db31f87.stex"
+path="res://.import/skeleton-rise-3.png-b4e9ac68b7a9e5daca6f9f89063bcf9d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/Assets/actors/Enemy1/spawn/skeleton-rise-3.png"
-dest_files=[ "res://.import/skeleton-rise-3.png-4273ac616e03d65cbabbf82e1db31f87.stex" ]
+source_file="res://src/assets/actors/Enemy1/spawn/skeleton-rise-3.png"
+dest_files=[ "res://.import/skeleton-rise-3.png-b4e9ac68b7a9e5daca6f9f89063bcf9d.stex" ]
 
 [params]
 

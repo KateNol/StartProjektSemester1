@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/godot_test_tileset.png-552d53fedc89e794c87c953fc5fd0b53.stex"
+path="res://.import/godot_test_tileset.png-c930399bc806e27b4c091941ed3ac8a1.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tilesets/godot_test_tileset.png"
-dest_files=[ "res://.import/godot_test_tileset.png-552d53fedc89e794c87c953fc5fd0b53.stex" ]
+source_file="res://src/assets/tilesets/godot_test_tileset.png"
+dest_files=[ "res://.import/godot_test_tileset.png-c930399bc806e27b4c091941ed3ac8a1.stex" ]
 
 [params]
 

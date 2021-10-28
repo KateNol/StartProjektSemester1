@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/hero-idle-1.png-493953fa6c32d75b7ca1b99f56f2e594.stex"
+path="res://.import/hero-idle-1.png-dcae77d7b2f2cf99904a8d1f1348b6ac.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/Assets/actors/Knight/hero-idle/hero-idle-1.png"
-dest_files=[ "res://.import/hero-idle-1.png-493953fa6c32d75b7ca1b99f56f2e594.stex" ]
+source_file="res://src/assets/actors/Knight/hero-idle/hero-idle-1.png"
+dest_files=[ "res://.import/hero-idle-1.png-dcae77d7b2f2cf99904a8d1f1348b6ac.stex" ]
 
 [params]
 

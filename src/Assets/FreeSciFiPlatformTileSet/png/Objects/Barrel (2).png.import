@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Barrel (2).png-dcc4a3ce72dfe671b77f6526c1438edb.stex"
+path="res://.import/Barrel (2).png-474ff41b5c0ad37a0f61bf563612ca28.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/Assets/freeSciFiPlatformTileSet/png/Objects/Barrel (2).png"
-dest_files=[ "res://.import/Barrel (2).png-dcc4a3ce72dfe671b77f6526c1438edb.stex" ]
+source_file="res://src/assets/FreeSciFiPlatformTileSet/png/Objects/Barrel (2).png"
+dest_files=[ "res://.import/Barrel (2).png-474ff41b5c0ad37a0f61bf563612ca28.stex" ]
 
 [params]
 

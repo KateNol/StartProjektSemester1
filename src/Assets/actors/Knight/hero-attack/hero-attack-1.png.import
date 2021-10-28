@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/hero-attack-1.png-6352f6db336a34cf7258b58a21e97c25.stex"
+path="res://.import/hero-attack-1.png-1c87bc95a33c390d39597a1c74d445bf.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://src/Assets/actors/Knight/hero-attack/hero-attack-1.png"
-dest_files=[ "res://.import/hero-attack-1.png-6352f6db336a34cf7258b58a21e97c25.stex" ]
+source_file="res://src/assets/actors/Knight/hero-attack/hero-attack-1.png"
+dest_files=[ "res://.import/hero-attack-1.png-1c87bc95a33c390d39597a1c74d445bf.stex" ]
 
 [params]
 
