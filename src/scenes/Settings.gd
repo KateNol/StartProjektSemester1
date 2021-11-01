@@ -5,4 +5,4 @@ func _ready():
 
 func _input(event):
 	if event.is_action_pressed("quit"):
-		get_tree().change_scene("res://src/levels/Menu.tscn")
+		get_tree().change_scene("res://src/scenes/Menu.tscn")

@@ -9,7 +9,6 @@
 [ext_resource path="res://src/assets/menu_assets/kb_d.png" type="Texture" id=7]
 [ext_resource path="res://src/scenes/Settings.gd" type="Script" id=8]
 
-
 [sub_resource type="DynamicFont" id=1]
 size = 50
 outline_size = 9
@@ -17,73 +16,73 @@ outline_color = Color( 0.141176, 0.419608, 0.568627, 1 )
 extra_spacing_space = -21
 font_data = ExtResource( 2 )
 
-[sub_resource type="StyleBoxTexture" id=12]
-texture = ExtResource( 3 )
-region_rect = Rect2( 0, 0, 128, 128 )
-
 [sub_resource type="StyleBoxTexture" id=2]
 texture = ExtResource( 3 )
 region_rect = Rect2( 0, 0, 128, 128 )
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="StyleBoxTexture" id=3]
+texture = ExtResource( 3 )
+region_rect = Rect2( 0, 0, 128, 128 )
+
+[sub_resource type="DynamicFont" id=4]
 size = 33
 outline_size = 8
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 2 )
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=5]
 size = 37
 outline_size = 2
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 2 )
 
-[sub_resource type="StyleBoxTexture" id=13]
+[sub_resource type="StyleBoxTexture" id=6]
 texture = ExtResource( 6 )
 region_rect = Rect2( 0, 0, 128, 128 )
 
-[sub_resource type="StyleBoxTexture" id=5]
+[sub_resource type="StyleBoxTexture" id=7]
 texture = ExtResource( 6 )
 region_rect = Rect2( 0, 0, 128, 128 )
 
-[sub_resource type="DynamicFont" id=6]
+[sub_resource type="DynamicFont" id=8]
 size = 30
 outline_size = 2
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 2 )
 
-[sub_resource type="StyleBoxTexture" id=14]
+[sub_resource type="StyleBoxTexture" id=9]
 texture = ExtResource( 7 )
 region_rect = Rect2( 0, 0, 128, 128 )
 
-[sub_resource type="StyleBoxTexture" id=7]
+[sub_resource type="StyleBoxTexture" id=10]
 texture = ExtResource( 7 )
 region_rect = Rect2( 0, 0, 128, 128 )
 
-[sub_resource type="DynamicFont" id=8]
+[sub_resource type="DynamicFont" id=11]
 size = 33
 outline_size = 2
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 2 )
 
-[sub_resource type="StyleBoxTexture" id=15]
+[sub_resource type="StyleBoxTexture" id=12]
 texture = ExtResource( 5 )
 region_rect = Rect2( 0, 0, 128, 128 )
 
-[sub_resource type="StyleBoxTexture" id=9]
+[sub_resource type="StyleBoxTexture" id=13]
 texture = ExtResource( 5 )
 region_rect = Rect2( 0, 0, 128, 128 )
 
-[sub_resource type="DynamicFont" id=10]
+[sub_resource type="DynamicFont" id=14]
 size = 30
 outline_size = 2
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 2 )
 
-[sub_resource type="StyleBoxTexture" id=16]
+[sub_resource type="StyleBoxTexture" id=15]
 texture = ExtResource( 4 )
 region_rect = Rect2( 0, 0, 128, 128 )
 
-[sub_resource type="StyleBoxTexture" id=11]
+[sub_resource type="StyleBoxTexture" id=16]
 texture = ExtResource( 4 )
 region_rect = Rect2( 0, 0, 128, 128 )
 
@@ -122,8 +121,8 @@ __meta__ = {
 [node name="ESC" type="Button" parent="Titel"]
 margin_right = 65.0
 margin_bottom = 63.0
-custom_styles/hover = SubResource( 12 )
-custom_styles/normal = SubResource( 2 )
+custom_styles/hover = SubResource( 2 )
+custom_styles/normal = SubResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -132,7 +131,7 @@ __meta__ = {
 margin_top = 192.0
 margin_right = 1024.0
 margin_bottom = 256.0
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 text = "STEUERUNG"
 align = 1
 valign = 1
@@ -146,7 +145,7 @@ margin_left = 128.0
 margin_top = 320.0
 margin_right = 320.0
 margin_bottom = 384.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 5 )
 text = "LINKS:"
 align = 1
 valign = 1
@@ -158,8 +157,8 @@ __meta__ = {
 margin_left = 192.0
 margin_right = 256.0
 margin_bottom = 64.0
-custom_styles/hover = SubResource( 13 )
-custom_styles/normal = SubResource( 5 )
+custom_styles/hover = SubResource( 6 )
+custom_styles/normal = SubResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -169,7 +168,7 @@ margin_left = 128.0
 margin_top = 448.0
 margin_right = 320.0
 margin_bottom = 512.0
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 8 )
 text = "RECHTS:"
 align = 1
 valign = 1
@@ -181,8 +180,8 @@ __meta__ = {
 margin_left = 192.0
 margin_right = 256.0
 margin_bottom = 56.0
-custom_styles/hover = SubResource( 14 )
-custom_styles/normal = SubResource( 7 )
+custom_styles/hover = SubResource( 9 )
+custom_styles/normal = SubResource( 10 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -192,7 +191,7 @@ margin_left = 512.0
 margin_top = 320.0
 margin_right = 768.0
 margin_bottom = 384.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = SubResource( 11 )
 text = "SPRINGEN:"
 align = 1
 valign = 1
@@ -204,8 +203,8 @@ __meta__ = {
 margin_left = 256.0
 margin_right = 320.0
 margin_bottom = 64.0
-custom_styles/hover = SubResource( 15 )
-custom_styles/normal = SubResource( 9 )
+custom_styles/hover = SubResource( 12 )
+custom_styles/normal = SubResource( 13 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -215,7 +214,7 @@ margin_left = 512.0
 margin_top = 448.0
 margin_right = 764.0
 margin_bottom = 512.0
-custom_fonts/font = SubResource( 10 )
+custom_fonts/font = SubResource( 14 )
 text = "SCHIESSEN:"
 align = 1
 valign = 1
@@ -227,8 +226,8 @@ __meta__ = {
 margin_left = 255.0
 margin_right = 319.0
 margin_bottom = 64.0
-custom_styles/hover = SubResource( 16 )
-custom_styles/normal = SubResource( 11 )
+custom_styles/hover = SubResource( 15 )
+custom_styles/normal = SubResource( 16 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

@@ -11,7 +11,7 @@ func _on_Start_pressed():
 
 
 func _on_Einstellungen_pressed():
-	get_tree().change_scene("res://src/levels/Settings.tscn")
+	get_tree().change_scene("res://src/scenes/Settings.tscn")
 	
 
 
