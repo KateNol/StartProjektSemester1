@@ -761,7 +761,7 @@ tile_data = PoolIntArray( -720924, 0, 0, -720910, 0, 0, -786432, 0, 0, -786418, 
 [node name="Door0" parent="Level0/Objects" instance=ExtResource( 5 )]
 position = Vector2( 402.957, 448.124 )
 script = SubResource( 13 )
-level_number = 2
+level_number = 1
 door_name = "Door"
 
 [node name="DoorExit" parent="Level0/Objects" instance=ExtResource( 5 )]
