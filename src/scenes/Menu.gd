@@ -6,13 +6,12 @@ func _ready():
 
 
 func _on_Start_pressed():
-	get_tree().change_scene("res://src/scenes/levels/Level0.tscn")
+	get_tree().change_scene("res://src/scenes/Game.tscn")
 	
 
 
 func _on_Einstellungen_pressed():
 	get_tree().change_scene("res://src/scenes/Settings.tscn")
-	
 
 
 func _on_ENDE_pressed():
