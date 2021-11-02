@@ -179,6 +179,9 @@ func take_damage(n : int):
 	if hitpoints < 0:
 		die()
 
+func take_damage_player(n : int):
+	take_damage(n)
+
 func on_stomp():
 	pass
 
