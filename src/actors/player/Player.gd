@@ -61,6 +61,9 @@ func _ready():
 	print("ready")
 
 func _process(delta):
+	if not is_alive:
+		return
+		
 	input_process(delta)
 	attack_process()
 	
@@ -70,6 +73,9 @@ func _process(delta):
 	time_since_last_air_jump += delta
 
 func _physics_process(delta):
+	if not is_alive:
+		return
+	
 	jump_process()
 	
 	# update horizontal velocity
@@ -177,7 +183,11 @@ func take_damage(n : int):
 	animation_state = ANIMATION_STATES.HURT
 	hitpoints -= n
 	if hitpoints < 0:
-		die()
+		print("dying")
+		animation_state = ANIMATION_STATES.DEATH
+		is_alive = false
+		update_animation()
+
 
 func take_damage_player(n : int):
 	take_damage(n)
@@ -214,6 +224,9 @@ func update_animation():
 			hurt_timer.connect("timeout", self, "hurt_timer_timeout")
 			add_child(hurt_timer)
 			hurt_timer.start()
+		ANIMATION_STATES.DEATH:
+			print("play death animation")
+			$AnimatedSprite.play("death")
 	
 	if direction.x == -1:
 		$AnimatedSprite.flip_h = true
