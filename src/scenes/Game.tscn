@@ -17,7 +17,8 @@ func _ready():
 	pass
 	
 func add_level():
-	level = load(str(\"res://src/Scenes/Levels/Level\" , G.next_level_number , \".tscn\")).instance()
+	print(\"loading: \" + str(\"res://src/scenes/levels/Level\" , G.next_level_number , \".tscn\"))
+	level = load(str(\"res://src/scenes/levels/Level\" , G.next_level_number , \".tscn\")).instance()
 	in_game.add_child(level)
 	
 	player = level.find_node(\"Player\")
