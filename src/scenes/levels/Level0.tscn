@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://src/assets/tilesets/png-transparent-nebula-atmosphere-sky-nebula-space-astronomy-space-miscellaneous-purple-texture.png" type="Texture" id=1]
 [ext_resource path="res://src/assets/tilesets/main_scifi_tileset.png" type="Texture" id=2]
@@ -313,27 +313,6 @@ points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 13/shape_one_way_margin = 0.0
 13/shapes = [  ]
 13/z_index = 0
-
-[sub_resource type="GDScript" id=13]
-script/source = "extends Node2D
-
-signal enter_door
-
-export(int) var level_number
-export(String) var door_name
-
-onready var area = $Area2D
-
-func _ready():
-	pass 
-	
-func _physics_process(delta):
-	for body in area.get_overlapping_bodies():
-		if body.name == \"Player\" and Input.is_action_just_pressed(\"jump\"):
-			G.next_level_door = door_name
-			G.next_level_number = level_number
-			emit_signal(\"enter_door\")
-"
 
 [sub_resource type="ConvexPolygonShape2D" id=14]
 points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
@@ -758,14 +737,10 @@ tile_data = PoolIntArray( -720924, 0, 0, -720910, 0, 0, -786432, 0, 0, -786418, 
 
 [node name="Objects" type="Node2D" parent="Level0"]
 
-[node name="Door0" parent="Level0/Objects" instance=ExtResource( 5 )]
-position = Vector2( 402.957, 448.124 )
-script = SubResource( 13 )
-level_number = 1
-door_name = "Door"
+[node name="Door" parent="Level0/Objects" instance=ExtResource( 5 )]
+position = Vector2( 433.704, 448.163 )
 
-[node name="DoorExit" parent="Level0/Objects" instance=ExtResource( 5 )]
-position = Vector2( 3000, 448 )
+[node name="Door2" parent="Level0/Objects" instance=ExtResource( 5 )]
 
 [node name="Enemies" type="Node2D" parent="Level0"]
 
