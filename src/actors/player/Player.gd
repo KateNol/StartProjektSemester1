@@ -2,6 +2,7 @@ extends KinematicBody2D
 const FireBall = preload("res://src/actors/player/FireBall.tscn")
 
 
+
 """ SECTION VARIABLE DEFINITIONS """
 
 enum ANIMATION_STATES { IDLE, RUN, HURT, JUMP, DEATH, ATTACK }
@@ -256,3 +257,14 @@ func _on_EnemyDetector_body_entered(body):
 func _on_StompDetector_area_entered(area):
 	print("stomping ", area.name)
 	# velocity.y = stomp_velocity
+	
+
+
+
+func _on_EnemyDetector_area_entered(area):
+	print(area.name, " area entered")
+
+
+func _on_AnimatedSprite_animation_finished():
+	if animation_state == ANIMATION_STATES.DEATH:
+		get_tree().reload_current_scene()
