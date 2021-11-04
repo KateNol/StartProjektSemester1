@@ -43,15 +43,13 @@ func _physics_process(delta):
 	move_and_slide_with_snap(movement, Vector2(0, 1), UP_VECTOR)
 	
 	if is_on_wall():
-		#sprite.play(\"dead\")
 		movement.x *= -1
 		sprite.flip_h = !sprite.flip_h
 
 
-
 func on_stomp():
 	sprite.play(\"dead\")
-	is_alive  = false
+	is_alive = false
 
 func _on_AnimatedSprite_animation_finished():
 	if sprite.animation == \"dead\":
@@ -60,14 +58,14 @@ func _on_AnimatedSprite_animation_finished():
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
-"frames": [ ExtResource( 13 ), ExtResource( 13 ), ExtResource( 13 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ) ],
-"loop": true,
-"name": "dead",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 3 ), ExtResource( 5 ), ExtResource( 4 ), ExtResource( 1 ), ExtResource( 6 ), ExtResource( 8 ), ExtResource( 7 ), ExtResource( 2 ) ],
 "loop": true,
 "name": "walk",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 13 ), ExtResource( 13 ), ExtResource( 13 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ) ],
+"loop": true,
+"name": "dead",
 "speed": 5.0
 } ]
 
