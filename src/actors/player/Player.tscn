@@ -251,11 +251,11 @@ script = ExtResource( 2 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 10, -3 )
 frames = SubResource( 38 )
-animation = "death"
-frame = 10
+animation = "attack1"
 playing = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2( 0, -75 )
 current = true
 zoom = Vector2( 0.9, 0.9 )
 limit_smoothed = true
