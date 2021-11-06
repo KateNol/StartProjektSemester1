@@ -174,7 +174,6 @@ func attack_process():
 		var b = FireBall.instance()
 		b.position = self.position
 		b.direction = self.last_look_direction
-		b.add_to_group("PlayerWeapon")
 		get_tree().current_scene.add_child(b)
 
 func die():
@@ -243,7 +242,6 @@ func update_animation():
 """ SECTION SIGNAL FUNCTIONS """
 
 func attack_timer_timeout():
-	print("attack finished")
 	is_attacking = false
 
 func hurt_timer_timeout():

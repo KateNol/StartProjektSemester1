@@ -6,17 +6,19 @@ var direction : Vector2
 
 
 func _ready():
-	pass
+	add_to_group("PlayerWeapon")
 
 func _process(delta):
 	pass
 
 func _physics_process(delta):
 	var collision = move_and_collide(direction*move_speed*delta)
-	pass
-	#if(collision != null):
-	#	#print("I collided with ", collision.collider.name)
-	#	if(collision.collider.has_method("on_stomp")):
-	#		#print("killing enemy")
-	#		collision.collider.on_stomp()
-	#	queue_free()
+
+
+func _on_Area2D_body_entered(body : Node):
+	if body.is_in_group("Enemy"):
+		body.take_damage(1)
+		queue_free()
+	if body.is_in_group("EnemyWeapon"):
+		print("blocked")
+		queue_free()
