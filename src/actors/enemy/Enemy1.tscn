@@ -27,7 +27,10 @@ onready var sprite = $AnimatedSprite
 var movement = Vector2(SPEED, 0)
 var is_alive = true 
 
+var healthpoints = 10
+
 func _ready():
+	add_to_group(\"Enemy\")
 	sprite.play(\"walk\")
 	pass 
 	
@@ -56,6 +59,10 @@ func on_stomp():
 func _on_AnimatedSprite_animation_finished():
 	if sprite.animation == \"dead\":
 		queue_free()
+
+func take_damage(n):
+	healthpoints -= n
+	print(\"enemy hp: \" + str(healthpoints))
 "
 
 [sub_resource type="SpriteFrames" id=2]
@@ -74,16 +81,19 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 13.047, 22.6729 )
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Node2D" groups=[
+"Enemy",
+]]
 
 [node name="Enemy1" type="KinematicBody2D" parent="."]
+collision_layer = 9
 script = SubResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Enemy1"]
 position = Vector2( 0.18729, 0 )
 frames = SubResource( 2 )
 animation = "dead"
-frame = 4
+frame = 3
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy1"]

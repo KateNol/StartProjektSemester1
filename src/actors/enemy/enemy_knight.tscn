@@ -37,7 +37,7 @@ var is_moving_right = true
 var is_alive = true # Überprüft ob der Gegner noch am leben ist
 var is_stompable = false
 
-var healthpoints = 100
+var healthpoints = 10
 
 func _ready():
 	$AnimatedSprite.play(\"run\")
@@ -64,14 +64,14 @@ func _physics_process(delta):
 
 
 func jump():
-	print(\"Knight Jump\")
+	#print(\"Knight Jump\")
 	$AnimatedSprite.play(\"jump\")
 	direction.y = jump_speed
 	jump_x = floor(position.x)
 
 # Was er nach dem Sprung tut
 func on_landing():
-	print(\"Knight gelandet\")
+	#print(\"Knight gelandet\")
 	$AnimatedSprite.play(\"walk\")
 	if floor(position.x) == jump_x:
 		turn()
@@ -88,20 +88,20 @@ func turn():
 
 
 func _on_PlayerDetector_body_entered(body: Node):
-	print(\"Player entered PlayerDetector\")
+	#print(\"Player entered PlayerDetector\")
 	if $PlayerDetector.monitoring == true and body.has_method(\"take_damage_player\"):
 		attack()
 
 
 func attack():
-	print(\"attack\")
+	#print(\"attack\")
 	direction.x = 0
 	$SwordHitbox.monitoring = true
 	$AnimatedSprite.play(\"attack\")
 
 
 func stop_attack():
-	print(\"stop attack\")
+	#print(\"stop attack\")
 	$SwordHitbox.monitoring = false
 	$AnimatedSprite.play(\"walk\")
 	direction.x = move_speed if is_moving_right else -move_speed
@@ -117,14 +117,14 @@ func _on_AnimatedSprite_animation_finished():
 
 
 func _on_SwordHitbox_body_entered(body):
-	print(\"Attack hitted Player\")
-	
+	#print(\"Attack hitted Player\")
+	pass
 	
 
-func take_damage_enemy(n):
-	print(\"took damage\")
+func take_damage(n):
+	#print(\"took damage\")
 	healthpoints = healthpoints - n
-	print(healthpoints)
+	print(\"knight hp: \" + str(healthpoints))
 "
 
 [sub_resource type="SpriteFrames" id=2]
@@ -134,14 +134,14 @@ animations = [ {
 "name": "idle",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 6 ), ExtResource( 14 ), ExtResource( 9 ), ExtResource( 7 ), ExtResource( 13 ), ExtResource( 11 ) ],
+"loop": true,
+"name": "walk",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 15 ), ExtResource( 8 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 12 ) ],
 "loop": true,
 "name": "attack",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 5 ) ],
-"loop": true,
-"name": "hurt",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 18 ), ExtResource( 19 ), ExtResource( 10 ), ExtResource( 20 ) ],
@@ -149,9 +149,9 @@ animations = [ {
 "name": "jump",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 6 ), ExtResource( 14 ), ExtResource( 9 ), ExtResource( 7 ), ExtResource( 13 ), ExtResource( 11 ) ],
+"frames": [ ExtResource( 5 ) ],
 "loop": true,
-"name": "walk",
+"name": "hurt",
 "speed": 5.0
 } ]
 
@@ -167,7 +167,9 @@ extents = Vector2( 11.906, 20.5828 )
 [sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 15.0609, 5.10341 )
 
-[node name="enemy_knight" type="KinematicBody2D"]
+[node name="enemy_knight" type="KinematicBody2D" groups=[
+"Enemy",
+]]
 collision_layer = 8
 collision_mask = 3
 script = SubResource( 1 )
@@ -175,7 +177,7 @@ script = SubResource( 1 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 2 )
 animation = "walk"
-frame = 1
+frame = 4
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -201,14 +203,18 @@ modulate = Color( 0.827451, 0, 1, 1 )
 position = Vector2( 28.3228, 9.466 )
 shape = SubResource( 5 )
 
-[node name="SwordHitbox" type="Area2D" parent="."]
+[node name="SwordHitbox" type="Area2D" parent="." groups=[
+"EnemyWeapon",
+]]
 position = Vector2( 55.3471, -24.3883 )
 monitoring = false
 monitorable = false
 collision_layer = 16
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="SwordHitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SwordHitbox" groups=[
+"EnemyWeapon",
+]]
 modulate = Color( 0, 0, 0, 1 )
 position = Vector2( -23.8406, 27.286 )
 shape = SubResource( 6 )
