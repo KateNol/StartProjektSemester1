@@ -42,11 +42,12 @@ var healthpoints = 100
 var attack_timer : Timer
 var hurt_timer : Timer
 
-const attack_cooldown : float = .4
+const attack_cooldown : float = 5.0
 const invincible_cooldown : float = 5.0
 
 var is_attacking : bool
 var is_hurt : bool
+
 func _ready():
 	$AnimatedSprite.play(\"run\")
 
@@ -63,6 +64,7 @@ func _physics_process(delta):
 
 
 	if is_on_floor():
+		turn_abyss()
 		if $AnimatedSprite.animation == \"jump\":
 			on_landing()
 		else:
@@ -72,14 +74,15 @@ func _physics_process(delta):
 
 
 func jump():
-	print(\"Knight Jump\")
+	#if body.is_a_parent_of()
+	# print(\"Knight Jump\")
 	$AnimatedSprite.play(\"jump\")
 	direction.y = jump_speed
 	jump_x = floor(position.x)
 
 # Was er nach dem Sprung tut
 func on_landing():
-	print(\"Knight gelandet\")
+	# print(\"Knight gelandet\")
 	$AnimatedSprite.play(\"walk\")
 	if floor(position.x) == jump_x:
 		turn()
@@ -87,25 +90,33 @@ func on_landing():
 # Wenn er gegen eine Wand läuft dreht er um
 func turn():
 	if is_on_wall():
-		print(\"Knight turn \")
+		# print(\"Knight turn \")
 		direction.x *= -1
 		is_moving_right = !is_moving_right
 		scale.x = -scale.x
 
-
+func turn_abyss():
+	if not $RayCast2D.is_colliding() and is_on_floor():
+		direction.x *= -1
+		is_moving_right = !is_moving_right
+		scale.x = -scale.x
+		
 
 
 func _on_PlayerDetector_body_entered(body: Node):
-	print(\"Player entered PlayerDetector\")
-	if body.is_in_group(\"player_weapon\") and body.has_method(\"take_damage_player\"):
+	# print(\"Player entered PlayerDetector\")
+	if body.is_in_group(\"player\") or body.has_method(\"take_damage_player\"):
 		attack()
 
 
 func attack():
+	if is_attacking:
+		return
 	print(\"attack\")
 	direction.x = 0
 	$SwordHitbox.monitoring = true
 	$AnimatedSprite.play(\"attack\")
+	is_attacking = true
 	attack_timer = Timer.new()
 	attack_timer.one_shot = true
 	attack_timer.wait_time = attack_cooldown
@@ -134,21 +145,23 @@ func _on_AnimatedSprite_animation_finished():
 
 
 func _on_SwordHitbox_body_entered(body):
-	print(\"Attack hitted Player\")
-	
+	#print(\"Attack hitted Player\")
+	pass
+
 
 func _on_EnemyHitbox_body_entered(body):
 	if is_hurt: 
 		return
-	take_damage_enemy(25)
-	direction.x = 0
-	$AnimatedSprite.play(\"hurt\")
-	hurt_timer = Timer.new()
-	hurt_timer.one_shot = true
-	hurt_timer.wait_time = invincible_cooldown
-	hurt_timer.connect(\"timeout\", self, \"hurt_timer_timeout\")
-	add_child(hurt_timer)
-	hurt_timer.start()
+	if body.is_in_group(\"player\"):
+		take_damage_enemy(2)
+		direction.x = 0
+		$AnimatedSprite.play(\"hurt\")
+		hurt_timer = Timer.new()
+		hurt_timer.one_shot = true
+		hurt_timer.wait_time = invincible_cooldown
+		hurt_timer.connect(\"timeout\", self, \"hurt_timer_timeout\")
+		add_child(hurt_timer)
+		hurt_timer.start()
 
 
 func take_damage_enemy(n):
@@ -158,14 +171,10 @@ func take_damage_enemy(n):
 	if healthpoints <= 0:
 		is_alive = false
 	is_hurt = true
-	
+
 func die():
 	if is_alive == false:
 		$AnimatedSprite.play(\"hurt\")
-		
-#func update_animation():
-	#if is_attacking or is_hurt:
-		#return
 
 func attack_timer_timeout():
 	print(\"attack finished\")
@@ -183,14 +192,14 @@ animations = [ {
 "name": "idle",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 1 ), ExtResource( 11 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 15 ) ],
-"loop": true,
-"name": "attack",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 8 ), ExtResource( 10 ), ExtResource( 12 ), ExtResource( 13 ) ],
 "loop": true,
 "name": "jump",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 9 ) ],
+"loop": true,
+"name": "hurt",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 14 ), ExtResource( 16 ), ExtResource( 18 ), ExtResource( 20 ), ExtResource( 17 ), ExtResource( 19 ) ],
@@ -198,9 +207,9 @@ animations = [ {
 "name": "walk",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 9 ) ],
+"frames": [ ExtResource( 1 ), ExtResource( 11 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 15 ) ],
 "loop": true,
-"name": "hurt",
+"name": "attack",
 "speed": 5.0
 } ]
 
@@ -208,7 +217,7 @@ animations = [ {
 extents = Vector2( 14.7102, 23.1357 )
 
 [sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 47.925, 24.1322 )
+extents = Vector2( 16.5735, 24.1322 )
 
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 11.906, 20.5828 )
@@ -224,7 +233,7 @@ script = SubResource( 1 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 2 )
 animation = "walk"
-frame = 1
+frame = 5
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -242,12 +251,12 @@ position = Vector2( 0.445442, 6.90446 )
 shape = SubResource( 4 )
 
 [node name="PlayerDetector" type="Area2D" parent="."]
-collision_layer = 8
+collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
 modulate = Color( 0.827451, 0, 1, 1 )
-position = Vector2( 28.3228, 9.466 )
+position = Vector2( 28.2048, 10.4099 )
 shape = SubResource( 5 )
 
 [node name="SwordHitbox" type="Area2D" parent="."]
@@ -261,6 +270,11 @@ collision_mask = 2
 modulate = Color( 0, 0, 0, 1 )
 position = Vector2( -23.8406, 27.286 )
 shape = SubResource( 6 )
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2( 13.016, 26.0139 )
+enabled = true
+cast_to = Vector2( 0, 49.501 )
 
 [connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
 [connection signal="body_entered" from="EnemyHitbox" to="." method="_on_EnemyHitbox_body_entered"]
