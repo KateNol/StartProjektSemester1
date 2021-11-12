@@ -105,7 +105,7 @@ func turn_abyss():
 
 func _on_PlayerDetector_body_entered(body: Node):
 	# print(\"Player entered PlayerDetector\")
-	if body.is_in_group(\"player\") or body.has_method(\"take_damage_player\"):
+	if body.is_in_group(\"player\"):
 		attack()
 
 
@@ -135,7 +135,7 @@ func stop_attack():
 func _on_AnimatedSprite_animation_finished():
 	if $AnimatedSprite.animation == \"attack\":
 		stop_attack()
-	if $AnimatedSprite.animation == \"hurt\" and is_alive == false:
+	if is_alive == false:
 		$CollisionShape2D.disabled = true
 		queue_free()
 	if $AnimatedSprite.animation == \"hurt\":
@@ -145,15 +145,18 @@ func _on_AnimatedSprite_animation_finished():
 
 
 func _on_SwordHitbox_body_entered(body):
-	#print(\"Attack hitted Player\")
-	pass
+	print(\"Attack hit Player\")
+	if body.is_in_group(\"player\"):
+		body.take_damage(2)
+
 
 
 func _on_EnemyHitbox_body_entered(body):
 	if is_hurt: 
 		return
 	if body.is_in_group(\"player\"):
-		take_damage_enemy(2)
+		return
+		take_damage(2)
 		direction.x = 0
 		$AnimatedSprite.play(\"hurt\")
 		hurt_timer = Timer.new()
@@ -164,7 +167,7 @@ func _on_EnemyHitbox_body_entered(body):
 		hurt_timer.start()
 
 
-func take_damage_enemy(n):
+func take_damage(n):
 	print(\"took damage\")
 	healthpoints = healthpoints - n
 	print(healthpoints)
