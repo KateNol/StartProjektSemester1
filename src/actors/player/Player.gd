@@ -182,7 +182,7 @@ func die():
 func take_damage(n : int):
 	animation_state = ANIMATION_STATES.HURT
 	hitpoints -= n
-	if hitpoints < 0:
+	if hitpoints <= 0:
 		print("dying")
 		animation_state = ANIMATION_STATES.DEATH
 		is_alive = false

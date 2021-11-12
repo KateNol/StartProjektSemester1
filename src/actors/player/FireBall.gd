@@ -16,9 +16,9 @@ func _physics_process(delta):
 
 
 func _on_Area2D_body_entered(body : Node):
-	if body.is_in_group("Enemy"):
+	if body.is_in_group("enemy"):
 		body.take_damage(1)
 		queue_free()
-	if body.is_in_group("EnemyWeapon"):
+	if body.is_in_group("enemyweapon"):
 		print("blocked")
 		queue_free()
