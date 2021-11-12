@@ -22,9 +22,9 @@ var velocity : Vector2
 var last_look_direction : Vector2
 
 # speeds in pixels / time
-const move_speed : float = 32*6/.8
-const jump_speed : int = -640
-const gravity : int = 1600
+const move_speed : float = 32*7/.8
+const jump_speed : int = -720
+const gravity : int = 1800
 
 # keep these values between 0-1
 const friction : float = 0.25
