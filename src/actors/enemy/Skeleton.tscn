@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://src/assets/actors/Enemy1/walk/skeleton-4.png" type="Texture" id=1]
 [ext_resource path="res://src/assets/actors/Enemy1/walk/skeleton-6.png" type="Texture" id=2]
@@ -26,8 +26,13 @@ onready var sprite = $AnimatedSprite
 
 var movement = Vector2(SPEED, 0)
 var is_alive = true 
+var is_moving_right = true
+const is_stompable = true
+
+var healthpoints = 3
 
 func _ready():
+	add_to_group(\"Enemy\")
 	sprite.play(\"walk\")
 	pass 
 	
@@ -39,55 +44,91 @@ func _physics_process(delta):
 	
 	if is_on_floor():
 		movement.y = 0
+		turn_abyss()
 		
 	move_and_slide_with_snap(movement, Vector2(0, 1), UP_VECTOR)
 	
 	if is_on_wall():
-		#sprite.play(\"dead\")
 		movement.x *= -1
 		sprite.flip_h = !sprite.flip_h
 
 
-
 func on_stomp():
-	sprite.play(\"dead\")
-	is_alive  = false
+	die()
+
+func turn_abyss():
+	if not $RayCast2D.is_colliding() and is_on_floor():
+		movement.x *= -1
+		is_moving_right = !is_moving_right
+		scale.x = -scale.x
 
 func _on_AnimatedSprite_animation_finished():
 	if sprite.animation == \"dead\":
 		queue_free()
+
+func die():
+	$CollisionShape2D.queue_free()
+	sprite.play(\"dead\")
+	is_alive = false
+
+func take_damage(n):
+	healthpoints -= n
+	print(\"enemy hp: \" + str(healthpoints))
+	if healthpoints <= 0:
+		die()
+
+
+
+func _on_Area2D_body_entered(body):
+	if body.is_in_group(\"player\"):
+		body.take_damage(1)
 "
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
-"frames": [ ExtResource( 13 ), ExtResource( 13 ), ExtResource( 13 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ) ],
-"loop": true,
-"name": "dead",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 3 ), ExtResource( 5 ), ExtResource( 4 ), ExtResource( 1 ), ExtResource( 6 ), ExtResource( 8 ), ExtResource( 7 ), ExtResource( 2 ) ],
 "loop": true,
 "name": "walk",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 13 ), ExtResource( 13 ), ExtResource( 13 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ) ],
+"loop": true,
+"name": "dead",
 "speed": 5.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 13.047, 22.6729 )
 
-[node name="Node2D" type="Node2D"]
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 15.8205, 22.4895 )
 
-[node name="Enemy1" type="KinematicBody2D" parent="."]
+[node name="Node2D" type="Node2D" groups=["enemy"]]
+
+[node name="Skeleton" type="KinematicBody2D" parent="." groups=["enemy"]]
+collision_layer = 8
+collision_mask = 13
 script = SubResource( 1 )
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="Enemy1"]
+[node name="AnimatedSprite" type="AnimatedSprite" parent="Skeleton"]
 position = Vector2( 0.18729, 0 )
 frames = SubResource( 2 )
-animation = "dead"
-frame = 4
+animation = "walk"
 playing = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy1"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Skeleton"]
 position = Vector2( 0.166855, 3.25367 )
 shape = SubResource( 3 )
 
-[connection signal="animation_finished" from="Enemy1/AnimatedSprite" to="Enemy1" method="_on_AnimatedSprite_animation_finished"]
+[node name="RayCast2D" type="RayCast2D" parent="Skeleton"]
+position = Vector2( -20.5, -13.75 )
+enabled = true
+
+[node name="Area2D" type="Area2D" parent="Skeleton"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Skeleton/Area2D"]
+position = Vector2( -0.0899086, 3.98409 )
+shape = SubResource( 4 )
+
+[connection signal="animation_finished" from="Skeleton/AnimatedSprite" to="Skeleton" method="_on_AnimatedSprite_animation_finished"]
+[connection signal="body_entered" from="Skeleton/Area2D" to="Skeleton" method="_on_Area2D_body_entered"]
