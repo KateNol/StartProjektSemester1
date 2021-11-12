@@ -254,6 +254,7 @@ func _on_EnemyDetector_body_entered(body):
 
 func _on_StompDetector_area_entered(area):
 	print("stomping ", area.name)
+	
 	# velocity.y = stomp_velocity
 	
 
@@ -266,3 +267,13 @@ func _on_EnemyDetector_area_entered(area):
 func _on_AnimatedSprite_animation_finished():
 	if animation_state == ANIMATION_STATES.DEATH:
 		get_tree().reload_current_scene()
+
+
+func _on_StompDetector_body_entered(body):
+	if body.is_in_group("enemy"):
+		if body.is_stompable:
+			body.on_stomp()
+			velocity.y = stomp_velocity
+		else:
+			take_damage(1)
+			velocity.y = stomp_velocity
