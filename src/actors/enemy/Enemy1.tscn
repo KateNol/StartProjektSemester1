@@ -26,6 +26,7 @@ onready var sprite = $AnimatedSprite
 
 var movement = Vector2(SPEED, 0)
 var is_alive = true 
+var is_moving_right = true
 
 var healthpoints = 10
 
@@ -42,19 +43,24 @@ func _physics_process(delta):
 	
 	if is_on_floor():
 		movement.y = 0
+		turn_abyss()
 		
 	move_and_slide_with_snap(movement, Vector2(0, 1), UP_VECTOR)
 	
 	if is_on_wall():
-		#sprite.play(\"dead\")
 		movement.x *= -1
 		sprite.flip_h = !sprite.flip_h
 
 
-
 func on_stomp():
 	sprite.play(\"dead\")
-	is_alive  = false
+	is_alive = false
+
+func turn_abyss():
+	if not $RayCast2D.is_colliding() and is_on_floor():
+		movement.x *= -1
+		is_moving_right = !is_moving_right
+		scale.x = -scale.x
 
 func _on_AnimatedSprite_animation_finished():
 	if sprite.animation == \"dead\":
@@ -67,14 +73,14 @@ func take_damage(n):
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
-"frames": [ ExtResource( 13 ), ExtResource( 13 ), ExtResource( 13 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ) ],
-"loop": true,
-"name": "dead",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 3 ), ExtResource( 5 ), ExtResource( 4 ), ExtResource( 1 ), ExtResource( 6 ), ExtResource( 8 ), ExtResource( 7 ), ExtResource( 2 ) ],
 "loop": true,
 "name": "walk",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 13 ), ExtResource( 13 ), ExtResource( 13 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ) ],
+"loop": true,
+"name": "dead",
 "speed": 5.0
 } ]
 
@@ -86,18 +92,23 @@ extents = Vector2( 13.047, 22.6729 )
 ]]
 
 [node name="Enemy1" type="KinematicBody2D" parent="."]
-collision_layer = 9
+collision_layer = 8
+collision_mask = 12
 script = SubResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Enemy1"]
 position = Vector2( 0.18729, 0 )
 frames = SubResource( 2 )
-animation = "dead"
-frame = 3
+animation = "walk"
+frame = 5
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy1"]
 position = Vector2( 0.166855, 3.25367 )
 shape = SubResource( 3 )
+
+[node name="RayCast2D" type="RayCast2D" parent="Enemy1"]
+position = Vector2( -20.5, -13.75 )
+enabled = true
 
 [connection signal="animation_finished" from="Enemy1/AnimatedSprite" to="Enemy1" method="_on_AnimatedSprite_animation_finished"]
