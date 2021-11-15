@@ -16,6 +16,13 @@ font_data = ExtResource( 2 )
 
 [sub_resource type="Theme" id=2]
 
+[sub_resource type="DynamicFont" id=6]
+size = 32
+outline_size = 4
+outline_color = Color( 0, 0, 0, 1 )
+extra_spacing_bottom = 6
+font_data = ExtResource( 2 )
+
 [sub_resource type="StyleBoxTexture" id=3]
 texture = ExtResource( 5 )
 region_rect = Rect2( 0, 0, 361, 101 )
@@ -28,11 +35,12 @@ region_rect = Rect2( 0, 0, 361, 101 )
 texture = ExtResource( 3 )
 region_rect = Rect2( 0, 0, 361, 101 )
 
-[sub_resource type="DynamicFont" id=6]
-size = 32
+[sub_resource type="DynamicFont" id=10]
+size = 22
 outline_size = 4
 outline_color = Color( 0, 0, 0, 1 )
-extra_spacing_bottom = 6
+extra_spacing_bottom = 3
+extra_spacing_char = 2
 font_data = ExtResource( 2 )
 
 [sub_resource type="StyleBoxTexture" id=7]
@@ -47,12 +55,12 @@ region_rect = Rect2( 0, 0, 361, 101 )
 texture = ExtResource( 3 )
 region_rect = Rect2( 0, 0, 361, 101 )
 
-[sub_resource type="DynamicFont" id=10]
-size = 22
+[sub_resource type="DynamicFont" id=14]
+size = 32
 outline_size = 4
 outline_color = Color( 0, 0, 0, 1 )
-extra_spacing_bottom = 3
-extra_spacing_char = 2
+extra_spacing_bottom = 5
+extra_spacing_char = 5
 font_data = ExtResource( 2 )
 
 [sub_resource type="StyleBoxTexture" id=11]
@@ -66,14 +74,6 @@ region_rect = Rect2( 0, 0, 361, 101 )
 [sub_resource type="StyleBoxTexture" id=13]
 texture = ExtResource( 3 )
 region_rect = Rect2( 0, 0, 361, 101 )
-
-[sub_resource type="DynamicFont" id=14]
-size = 32
-outline_size = 4
-outline_color = Color( 0, 0, 0, 1 )
-extra_spacing_bottom = 5
-extra_spacing_char = 5
-font_data = ExtResource( 2 )
 
 [sub_resource type="AtlasTexture" id=15]
 flags = 4
@@ -138,10 +138,10 @@ margin_top = -108.0
 margin_right = 449.0
 margin_bottom = -51.0
 theme = SubResource( 2 )
+custom_fonts/font = SubResource( 6 )
 custom_styles/hover = SubResource( 3 )
 custom_styles/pressed = SubResource( 4 )
 custom_styles/normal = SubResource( 5 )
-custom_fonts/font = SubResource( 6 )
 text = "START"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -152,10 +152,10 @@ margin_left = 128.0
 margin_top = 320.0
 margin_right = 448.0
 margin_bottom = 384.0
+custom_fonts/font = SubResource( 10 )
 custom_styles/hover = SubResource( 7 )
 custom_styles/pressed = SubResource( 8 )
 custom_styles/normal = SubResource( 9 )
-custom_fonts/font = SubResource( 10 )
 text = "EINSTELLUNGEN"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -166,10 +166,10 @@ margin_left = 128.0
 margin_top = 448.0
 margin_right = 448.0
 margin_bottom = 504.0
+custom_fonts/font = SubResource( 14 )
 custom_styles/hover = SubResource( 11 )
 custom_styles/pressed = SubResource( 12 )
 custom_styles/normal = SubResource( 13 )
-custom_fonts/font = SubResource( 14 )
 text = "ENDE"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -179,7 +179,11 @@ __meta__ = {
 position = Vector2( 755.822, 322.431 )
 scale = Vector2( 2.81113, 2.31242 )
 frames = SubResource( 18 )
+<<<<<<< HEAD
 frame = 1
+=======
+frame = 2
+>>>>>>> GameDesign
 speed_scale = 0.8
 playing = true
 
