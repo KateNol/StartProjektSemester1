@@ -798,10 +798,7 @@ position = Vector2( 908.251, 298.492 )
 position = Vector2( 972.106, 298.929 )
 
 [node name="shards" parent="Level0/Objects" instance=ExtResource( 7 )]
-position = Vector2( 1240.72, 285.929 )
-
-[node name="shards2" parent="Level0/Objects" instance=ExtResource( 7 )]
-position = Vector2( 1302.03, 284.509 )
+position = Vector2( 3761, -146 )
 
 [node name="spike" parent="Level0/Objects" instance=ExtResource( 13 )]
 position = Vector2( 2461.62, 287.953 )
