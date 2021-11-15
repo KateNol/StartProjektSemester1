@@ -1,7 +1,7 @@
 extends KinematicBody2D
 const FireBall = preload("res://src/actors/player/FireBall.tscn")
 
-
+const TYPE = "player"
 
 """ SECTION VARIABLE DEFINITIONS """
 
