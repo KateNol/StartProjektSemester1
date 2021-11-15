@@ -1,0 +1,102 @@
+[gd_scene load_steps=6 format=2]
+
+[sub_resource type="GDScript" id=3]
+script/source = "extends KinematicBody2D
+
+const move_speed : float = 32 * 2 / 1.3
+const up_vector = Vector2(0, -1)
+
+var direction = Vector2(move_speed, 0) 
+var velocity = Vector2(0, 1)  
+var is_moving_right = true
+
+var is_alive = true
+
+var is_attacking : bool
+var is_hurt : bool
+const is_stompable = false
+
+func _ready():
+	$AnimationPlayer.play(\"idle\")
+
+
+func _physics_process(delta):
+	if is_alive == false:
+		return
+
+	move_and_slide_with_snap(-direction, velocity, up_vector) 
+
+	if is_on_wall(): 
+		turn()
+
+func turn():
+	if is_on_wall():
+		direction.x *= -1
+		is_moving_right = !is_moving_right
+		scale.x = -scale.x
+
+func on_stomp():
+	print(\"tja\")
+
+func die():
+	pass
+
+func take_damage(n):
+	pass
+
+func _on_Area2D_body_entered(body):
+	if body.is_in_group(\"player\"):
+		body.take_damage(10)
+"
+
+[sub_resource type="StreamTexture" id=6]
+load_path = "res://.import/ghost-idle.png-c39119bd2cc2f3b601d1a9a52abe1ebf.stex"
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 10, 19.2882 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "idle"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("ghost:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0, 6 ]
+}
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 11.0537, 20.5606 )
+
+[node name="ghost" type="KinematicBody2D" groups=[
+"enemy",
+]]
+script = SubResource( 3 )
+
+[node name="ghost" type="Sprite" parent="." groups=[
+"enemy",
+]]
+texture = SubResource( 6 )
+hframes = 7
+frame = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/idle = SubResource( 2 )
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+modulate = Color( 1, 0.0470588, 0, 1 )
+position = Vector2( 0, -0.198421 )
+shape = SubResource( 5 )
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
