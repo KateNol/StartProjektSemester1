@@ -778,13 +778,15 @@ tile_data = PoolIntArray( -720924, 0, 0, -720910, 0, 0, -786432, 0, 0, -786418, 
 [node name="Objects" type="Node2D" parent="Level0"]
 
 [node name="Door0" parent="Level0/Objects" instance=ExtResource( 5 )]
-position = Vector2( 402.957, 448.124 )
+position = Vector2( 402.957, 450 )
 script = SubResource( 13 )
 level_number = 1
-door_name = "Door"
+door_name = "Door0"
 
 [node name="DoorExit" parent="Level0/Objects" instance=ExtResource( 5 )]
 position = Vector2( 682.395, 448 )
+level_number = 1
+door_name = "DoorExit"
 
 [node name="coin" parent="Level0/Objects" instance=ExtResource( 6 )]
 position = Vector2( 908.251, 298.492 )
@@ -843,8 +845,8 @@ margin_left = 1144.0
 margin_top = 24.0
 margin_right = 1264.0
 margin_bottom = 56.0
-custom_fonts/font = SubResource( 31 )
 custom_colors/font_color = Color( 0.988235, 1, 0.321569, 1 )
+custom_fonts/font = SubResource( 31 )
 align = 1
 valign = 1
 __meta__ = {
