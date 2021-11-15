@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://src/assets/actors/Enemy1/walk/skeleton-4.png" type="Texture" id=1]
 [ext_resource path="res://src/assets/actors/Enemy1/walk/skeleton-6.png" type="Texture" id=2]
@@ -13,6 +13,8 @@
 [ext_resource path="res://src/assets/actors/Enemy1/dead/enemy-death-4.png" type="Texture" id=11]
 [ext_resource path="res://src/assets/actors/Enemy1/dead/enemy-death-5.png" type="Texture" id=12]
 [ext_resource path="res://src/assets/actors/Enemy1/dead/enemy-death-1.png" type="Texture" id=13]
+[ext_resource path="res://src/assets/actors/Enemy1/skeleton_sound/hurt.ogg" type="AudioStream" id=14]
+[ext_resource path="res://src/assets/actors/Enemy1/skeleton_sound/kill.ogg" type="AudioStream" id=15]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends KinematicBody2D
@@ -69,9 +71,11 @@ func _on_AnimatedSprite_animation_finished():
 func die():
 	$CollisionShape2D.queue_free()
 	sprite.play(\"dead\")
+	$Sound_kill.play()
 	is_alive = false
 
 func take_damage(n):
+	$Sound_hurt.play()
 	healthpoints -= n
 	print(\"enemy hp: \" + str(healthpoints))
 	if healthpoints <= 0:
@@ -86,14 +90,14 @@ func _on_Area2D_body_entered(body):
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
-"frames": [ ExtResource( 3 ), ExtResource( 5 ), ExtResource( 4 ), ExtResource( 1 ), ExtResource( 6 ), ExtResource( 8 ), ExtResource( 7 ), ExtResource( 2 ) ],
-"loop": true,
-"name": "walk",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 13 ), ExtResource( 13 ), ExtResource( 13 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ) ],
 "loop": true,
 "name": "dead",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ), ExtResource( 5 ), ExtResource( 4 ), ExtResource( 1 ), ExtResource( 6 ), ExtResource( 8 ), ExtResource( 7 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "walk",
 "speed": 5.0
 } ]
 
@@ -103,9 +107,13 @@ extents = Vector2( 13.047, 22.6729 )
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 15.8205, 22.4895 )
 
-[node name="Node2D" type="Node2D" groups=["enemy"]]
+[node name="Node2D" type="Node2D" groups=[
+"enemy",
+]]
 
-[node name="Skeleton" type="KinematicBody2D" parent="." groups=["enemy"]]
+[node name="Skeleton" type="KinematicBody2D" parent="." groups=[
+"enemy",
+]]
 collision_layer = 8
 collision_mask = 13
 script = SubResource( 1 )
@@ -114,6 +122,7 @@ script = SubResource( 1 )
 position = Vector2( 0.18729, 0 )
 frames = SubResource( 2 )
 animation = "walk"
+frame = 6
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Skeleton"]
@@ -127,8 +136,17 @@ enabled = true
 [node name="Area2D" type="Area2D" parent="Skeleton"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Skeleton/Area2D"]
+modulate = Color( 0, 0, 0, 1 )
 position = Vector2( -0.0899086, 3.98409 )
 shape = SubResource( 4 )
+
+[node name="Sound_hurt" type="AudioStreamPlayer2D" parent="Skeleton"]
+stream = ExtResource( 14 )
+volume_db = -10.0
+
+[node name="Sound_kill" type="AudioStreamPlayer2D" parent="Skeleton"]
+stream = ExtResource( 15 )
+volume_db = -10.0
 
 [connection signal="animation_finished" from="Skeleton/AnimatedSprite" to="Skeleton" method="_on_AnimatedSprite_animation_finished"]
 [connection signal="body_entered" from="Skeleton/Area2D" to="Skeleton" method="_on_Area2D_body_entered"]
