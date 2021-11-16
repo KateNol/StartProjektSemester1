@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=2]
+[gd_scene load_steps=49 format=2]
 
 [ext_resource path="res://src/assets/tilesets/png-transparent-nebula-atmosphere-sky-nebula-space-astronomy-space-miscellaneous-purple-texture.png" type="Texture" id=1]
 [ext_resource path="res://src/assets/tilesets/main_scifi_tileset.png" type="Texture" id=2]
@@ -15,6 +15,8 @@
 [ext_resource path="res://src/scenes/spike.tscn" type="PackedScene" id=13]
 [ext_resource path="res://src/actors/enemy/enemy_knight.tscn" type="PackedScene" id=14]
 [ext_resource path="res://src/actors/enemy/Skeleton.tscn" type="PackedScene" id=15]
+[ext_resource path="res://src/actors/enemy/wizard.tscn" type="PackedScene" id=16]
+[ext_resource path="res://src/actors/enemy/ghost.tscn" type="PackedScene" id=17]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
@@ -927,8 +929,15 @@ position = Vector2( 2676.38, 62.649 )
 [node name="Node2D3" parent="Level0/Enemies" instance=ExtResource( 15 )]
 position = Vector2( 2688.73, 291.631 )
 
+[node name="wizard" parent="Level0/Enemies" instance=ExtResource( 16 )]
+position = Vector2( 1255, 397 )
+scale = Vector2( 1.41689, 1.43723 )
+
+[node name="ghost" parent="Level0/Enemies" instance=ExtResource( 17 )]
+position = Vector2( 2131, 297 )
+
 [node name="Player" parent="Level0" instance=ExtResource( 4 )]
-position = Vector2( 3764, -182 )
+position = Vector2( 1880, 385 )
 collision_mask = 16
 
 [node name="Level" type="TileMap" parent="Level0"]
