@@ -1,6 +1,6 @@
-[gd_scene load_steps=51 format=2]
+[gd_scene load_steps=52 format=2]
 
-[ext_resource path="res://src/assets/actors/Player/player_attack2.png" type="Texture" id=1]
+[ext_resource path="res://src/assets/actors/Player/player_attack_melee.png" type="Texture" id=1]
 [ext_resource path="res://src/actors/player/Player.gd" type="Script" id=2]
 [ext_resource path="res://src/assets/actors/Player/player_run.png" type="Texture" id=3]
 [ext_resource path="res://src/assets/actors/Player/player_idle.png" type="Texture" id=4]
@@ -8,6 +8,46 @@
 [ext_resource path="res://src/assets/actors/Player/player_attack3.png" type="Texture" id=6]
 [ext_resource path="res://src/assets/actors/Player/player_hurt.png" type="Texture" id=7]
 [ext_resource path="res://src/assets/actors/Player/player_death.png" type="Texture" id=8]
+
+[sub_resource type="AtlasTexture" id=43]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=44]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 48, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=45]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 96, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=46]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 144, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=47]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 192, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=48]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 240, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=49]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 288, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=50]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 336, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=1]
 flags = 4
@@ -28,46 +68,6 @@ region = Rect2( 96, 0, 48, 48 )
 flags = 4
 atlas = ExtResource( 4 )
 region = Rect2( 144, 0, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=30]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 0, 0, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=31]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 48, 0, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=32]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 96, 0, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=33]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 144, 0, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=34]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 192, 0, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=35]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 240, 0, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=36]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 288, 0, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=37]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 336, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=23]
 flags = 4
@@ -201,14 +201,14 @@ region = Rect2( 240, 0, 48, 48 )
 
 [sub_resource type="SpriteFrames" id=38]
 animations = [ {
+"frames": [ SubResource( 43 ), SubResource( 44 ), SubResource( 45 ), SubResource( 46 ), SubResource( 47 ), SubResource( 48 ), SubResource( 49 ), SubResource( 50 ) ],
+"loop": true,
+"name": "melee",
+"speed": 5.0
+}, {
 "frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
 "loop": true,
 "name": "idle",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 30 ), SubResource( 31 ), SubResource( 32 ), SubResource( 33 ), SubResource( 34 ), SubResource( 35 ), SubResource( 36 ), SubResource( 37 ) ],
-"loop": true,
-"name": "punch",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ) ],
@@ -246,6 +246,9 @@ extents = Vector2( 14.4844, 15.5 )
 [sub_resource type="RectangleShape2D" id=41]
 extents = Vector2( 9.11914, 2.77663 )
 
+[sub_resource type="RectangleShape2D" id=51]
+extents = Vector2( 12.751, 6.23259 )
+
 [node name="Player" type="KinematicBody2D" groups=["player"]]
 collision_layer = 3
 collision_mask = 249
@@ -255,8 +258,8 @@ script = ExtResource( 2 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 10, -24 )
 frames = SubResource( 38 )
-animation = "attack1"
-frame = 3
+animation = "melee"
+frame = 7
 playing = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -271,9 +274,9 @@ smoothing_speed = 10.0
 
 [node name="InfoLabel" type="Label" parent="Camera2D"]
 margin_left = -18.3265
-margin_top = -106.037
+margin_top = -144.037
 margin_right = 21.6735
-margin_bottom = -92.0373
+margin_bottom = -130.037
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -283,6 +286,7 @@ position = Vector2( 0, -15.5 )
 shape = SubResource( 39 )
 
 [node name="EnemyDetector" type="Area2D" parent="."]
+visible = false
 position = Vector2( 0, -16 )
 collision_layer = 0
 collision_mask = 2
@@ -297,6 +301,12 @@ position = Vector2( 0, -19 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StompDetector"]
 position = Vector2( 0, 17.2338 )
 shape = SubResource( 41 )
+
+[node name="MeleeDetector" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MeleeDetector"]
+position = Vector2( 22.3487, -20.622 )
+shape = SubResource( 51 )
 
 [connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
 [connection signal="area_entered" from="EnemyDetector" to="." method="_on_EnemyDetector_area_entered"]
