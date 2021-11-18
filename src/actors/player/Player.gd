@@ -25,6 +25,7 @@ var last_look_direction : Vector2
 const move_speed : float = 32*7/.8
 const jump_speed : int = -720
 const gravity : int = 1800
+const velocity_cap_v : int = 1000
 
 # keep these values between 0-1
 const friction : float = 0.25
@@ -89,6 +90,9 @@ func _physics_process(delta):
 	
 	# update vertical velocity
 	velocity.y += gravity * delta
+	if velocity.y > velocity_cap_v:
+		print("velocity cap")
+		velocity.y = velocity_cap_v
 	
 	update_animation()
 	
@@ -239,7 +243,7 @@ func update_animation():
 		$AnimatedSprite.flip_h = false
 		$AnimatedSprite.offset.x = 0
 	
-	$Camera2D/InfoLabel.text = "is_moving: " + str(is_moving) + "\nis_jumping: " + str(is_jumping) + "\nis_attacking: " + str(is_attacking) + "\nhp: " + str(hitpoints)
+	$Camera2D/InfoLabel.text = "is_moving: " + str(is_moving) + "\nis_jumping: " + str(is_jumping) + "\nis_attacking: " + str(is_attacking) + "\nvh: " + str(velocity.x) + "\nvv" + str(velocity.y) + "\nhp: " + str(hitpoints)
 	
 
 
