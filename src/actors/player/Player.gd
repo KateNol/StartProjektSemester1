@@ -5,8 +5,11 @@ const TYPE = "player"
 
 """ SECTION VARIABLE DEFINITIONS """
 
-enum ANIMATION_STATES { IDLE, RUN, HURT, JUMP, DEATH, ATTACK }
+enum ANIMATION_STATES { IDLE, RUN, HURT, JUMP, DEATH, ATTACK_MELEE, ATTACK_RANGED }
 var animation_state  = ANIMATION_STATES.IDLE
+
+enum ATTACK_STATES { MELEE, RANGED }
+var attack_state = null
 
 var is_jumping : bool
 var is_attacking : bool
@@ -41,7 +44,7 @@ var time_since_last_air_jump : float
 var terminate_jump : bool
 var double_jump : bool
 
-const attack_cooldown : float = .4
+const attack_cooldown : float = .7
 var attack : bool = false
 var attack_timer : Timer
 
@@ -59,6 +62,8 @@ func _ready():
 	
 	hitpoints = 10
 	is_alive = true
+	
+	$MeleeDetector.monitoring = false
 	
 	print("ready")
 
@@ -100,7 +105,12 @@ func _physics_process(delta):
 		animation_state = ANIMATION_STATES.IDLE if direction.x == 0 else ANIMATION_STATES.RUN
 		animation_state = animation_state if is_on_floor() else ANIMATION_STATES.JUMP
 	if attack:
-		animation_state = ANIMATION_STATES.ATTACK
+		if attack_state == ATTACK_STATES.MELEE:
+			print("set state melee")
+			animation_state = ANIMATION_STATES.ATTACK_MELEE
+		elif attack_state == ATTACK_STATES.RANGED:
+			print("set state ranged")
+			animation_state = ANIMATION_STATES.ATTACK_RANGED
 	is_jumping = false if is_on_floor() else true
 	
 	is_moving = direction.length() != 0
@@ -130,8 +140,14 @@ func input_process(delta):
 	if Input.is_action_just_released("jump"):
 		terminate_jump = true
 	if Input.is_action_just_pressed("attack"):
-		if not is_attacking:
+		if !is_attacking:
 			attack = true
+			attack_state = ATTACK_STATES.RANGED
+	if Input.is_action_just_pressed("melee"):
+		if !is_attacking:
+			attack = true
+			attack_state = ATTACK_STATES.MELEE
+			
 	if Input.is_action_just_pressed("hit_self"):
 		print("ow")
 		take_damage(1)
@@ -185,10 +201,15 @@ func attack_process():
 		attack_timer.connect("timeout", self, "attack_timer_timeout")
 		add_child(attack_timer)
 		attack_timer.start()
-		var b = FireBall.instance()
-		b.position = self.position
-		b.direction = self.last_look_direction
-		get_tree().current_scene.add_child(b)
+		
+		if attack_state == ATTACK_STATES.RANGED:
+			var b = FireBall.instance()
+			b.position = self.position
+			b.direction = self.last_look_direction
+			get_tree().current_scene.add_child(b)
+		if attack_state == ATTACK_STATES.MELEE:
+			print("melee")
+			$MeleeDetector.monitoring = true
 
 func die():
 	queue_free()
@@ -228,8 +249,10 @@ func update_animation():
 			$AnimatedSprite.play("move")
 		ANIMATION_STATES.JUMP:
 			$AnimatedSprite.play("jump")
-		ANIMATION_STATES.ATTACK:
+		ANIMATION_STATES.ATTACK_RANGED:
 			$AnimatedSprite.play("attack1")
+		ANIMATION_STATES.ATTACK_MELEE:
+			$AnimatedSprite.play("melee")
 		ANIMATION_STATES.HURT:
 			$AnimatedSprite.play("hurt")
 		ANIMATION_STATES.DEATH:
@@ -239,9 +262,11 @@ func update_animation():
 	if direction.x == -1:
 		$AnimatedSprite.flip_h = true
 		$AnimatedSprite.offset.x = -20
+		$MeleeDetector/CollisionShape2D.position.x = -1 * abs($MeleeDetector/CollisionShape2D.position.x)
 	if direction.x == 1:
 		$AnimatedSprite.flip_h = false
 		$AnimatedSprite.offset.x = 0
+		$MeleeDetector/CollisionShape2D.position.x = abs($MeleeDetector/CollisionShape2D.position.x)
 	
 	$Camera2D/InfoLabel.text = "is_moving: " + str(is_moving) + "\nis_jumping: " + str(is_jumping) + "\nis_attacking: " + str(is_attacking) + "\nvh: " + str(velocity.x) + "\nvv" + str(velocity.y) + "\nhp: " + str(hitpoints)
 	
@@ -251,6 +276,7 @@ func update_animation():
 
 func attack_timer_timeout():
 	is_attacking = false
+	$MeleeDetector.monitoring = false
 
 func hurt_timer_timeout():
 	print("hurt finished")
@@ -259,14 +285,6 @@ func hurt_timer_timeout():
 func _on_EnemyDetector_body_entered(body):
 	print(body.name, " entered player body")
 	# die()
-
-func _on_StompDetector_area_entered(area):
-	print("stomping ", area.name)
-	
-	# velocity.y = stomp_velocity
-	
-
-
 
 func _on_EnemyDetector_area_entered(area):
 	print(area.name, " area entered")
@@ -286,3 +304,8 @@ func _on_StompDetector_body_entered(body):
 		else:
 			take_damage(1)
 			velocity.y = stomp_velocity
+
+
+func _on_MeleeDetector_body_entered(body):
+	if body.is_in_group("enemy"):
+		body.take_damage(5)
