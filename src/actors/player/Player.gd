@@ -92,9 +92,9 @@ func _physics_process(delta):
 	
 	update_animation()
 	
-	
-	animation_state = ANIMATION_STATES.IDLE if direction.x == 0 else ANIMATION_STATES.RUN
-	animation_state = animation_state if is_on_floor() else ANIMATION_STATES.JUMP
+	if !is_hurt and !is_attacking:
+		animation_state = ANIMATION_STATES.IDLE if direction.x == 0 else ANIMATION_STATES.RUN
+		animation_state = animation_state if is_on_floor() else ANIMATION_STATES.JUMP
 	if attack:
 		animation_state = ANIMATION_STATES.ATTACK
 	is_jumping = false if is_on_floor() else true
@@ -170,7 +170,17 @@ func jump_process():
 			velocity.y = 0
 
 func attack_process():
+	if is_attacking:
+		return
+	
 	if attack:
+		is_attacking = true
+		attack_timer = Timer.new()
+		attack_timer.one_shot = true
+		attack_timer.wait_time = attack_cooldown
+		attack_timer.connect("timeout", self, "attack_timer_timeout")
+		add_child(attack_timer)
+		attack_timer.start()
 		var b = FireBall.instance()
 		b.position = self.position
 		b.direction = self.last_look_direction
@@ -180,6 +190,17 @@ func die():
 	queue_free()
 
 func take_damage(n : int):
+	if is_hurt:
+		return
+		
+	is_hurt = true
+	hurt_timer = Timer.new()
+	hurt_timer.one_shot = true
+	hurt_timer.wait_time = invincible_cooldown
+	hurt_timer.connect("timeout", self, "hurt_timer_timeout")
+	add_child(hurt_timer)
+	hurt_timer.start()
+	
 	animation_state = ANIMATION_STATES.HURT
 	hitpoints -= n
 	if hitpoints <= 0:
@@ -196,9 +217,6 @@ func on_stomp():
 	pass
 
 func update_animation():
-	if is_attacking or is_hurt:
-		return
-
 	match animation_state:
 		ANIMATION_STATES.IDLE:
 			$AnimatedSprite.play("idle")
@@ -207,23 +225,9 @@ func update_animation():
 		ANIMATION_STATES.JUMP:
 			$AnimatedSprite.play("jump")
 		ANIMATION_STATES.ATTACK:
-			is_attacking = true
 			$AnimatedSprite.play("attack1")
-			attack_timer = Timer.new()
-			attack_timer.one_shot = true
-			attack_timer.wait_time = attack_cooldown
-			attack_timer.connect("timeout", self, "attack_timer_timeout")
-			add_child(attack_timer)
-			attack_timer.start()
 		ANIMATION_STATES.HURT:
-			is_hurt = true
 			$AnimatedSprite.play("hurt")
-			hurt_timer = Timer.new()
-			hurt_timer.one_shot = true
-			hurt_timer.wait_time = invincible_cooldown
-			hurt_timer.connect("timeout", self, "hurt_timer_timeout")
-			add_child(hurt_timer)
-			hurt_timer.start()
 		ANIMATION_STATES.DEATH:
 			print("play death animation")
 			$AnimatedSprite.play("death")
@@ -271,6 +275,7 @@ func _on_AnimatedSprite_animation_finished():
 
 func _on_StompDetector_body_entered(body):
 	if body.is_in_group("enemy"):
+		print(body.name)
 		if body.is_stompable:
 			body.on_stomp()
 			velocity.y = stomp_velocity
