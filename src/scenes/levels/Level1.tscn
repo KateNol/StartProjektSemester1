@@ -1059,6 +1059,72 @@ position = Vector2( 1982, 183 )
 [node name="coin2" parent="Level1/Objects/Coins" instance=ExtResource( 7 )]
 position = Vector2( 972.106, 298.929 )
 
+[node name="coin14" parent="Level1/Objects/Coins" instance=ExtResource( 7 )]
+position = Vector2( 12109, 431 )
+
+[node name="coin15" parent="Level1/Objects/Coins" instance=ExtResource( 7 )]
+position = Vector2( 12066, 431 )
+
+[node name="coin73" parent="Level1/Objects/Coins" instance=ExtResource( 7 )]
+position = Vector2( 12017, 433 )
+
+[node name="coin74" parent="Level1/Objects/Coins" instance=ExtResource( 7 )]
+position = Vector2( 11969, 431 )
+
+[node name="coin75" parent="Level1/Objects/Coins" instance=ExtResource( 7 )]
+position = Vector2( 11905, 430 )
+
+[node name="coin76" parent="Level1/Objects/Coins" instance=ExtResource( 7 )]
+position = Vector2( 11857, 431 )
+
+[node name="coin77" parent="Level1/Objects/Coins" instance=ExtResource( 7 )]
+position = Vector2( 11808, 429 )
+
+[node name="coin78" parent="Level1/Objects/Coins" instance=ExtResource( 7 )]
+position = Vector2( 11764, 430 )
+
+[node name="coin79" parent="Level1/Objects/Coins" instance=ExtResource( 7 )]
+position = Vector2( 11786, 389 )
+
+[node name="coin80" parent="Level1/Objects/Coins" instance=ExtResource( 7 )]
+position = Vector2( 11835, 390 )
+
+[node name="coin81" parent="Level1/Objects/Coins" instance=ExtResource( 7 )]
+position = Vector2( 11884, 391 )
+
+[node name="coin82" parent="Level1/Objects/Coins" instance=ExtResource( 7 )]
+position = Vector2( 11994, 391 )
+
+[node name="coin83" parent="Level1/Objects/Coins" instance=ExtResource( 7 )]
+position = Vector2( 12042, 390 )
+
+[node name="coin84" parent="Level1/Objects/Coins" instance=ExtResource( 7 )]
+position = Vector2( 12089, 389 )
+
+[node name="coin85" parent="Level1/Objects/Coins" instance=ExtResource( 7 )]
+position = Vector2( 12064, 347 )
+
+[node name="coin86" parent="Level1/Objects/Coins" instance=ExtResource( 7 )]
+position = Vector2( 12018, 349 )
+
+[node name="coin87" parent="Level1/Objects/Coins" instance=ExtResource( 7 )]
+position = Vector2( 11861, 352 )
+
+[node name="coin88" parent="Level1/Objects/Coins" instance=ExtResource( 7 )]
+position = Vector2( 11811, 352 )
+
+[node name="coin89" parent="Level1/Objects/Coins" instance=ExtResource( 7 )]
+position = Vector2( 11906, 338 )
+
+[node name="coin90" parent="Level1/Objects/Coins" instance=ExtResource( 7 )]
+position = Vector2( 11965, 337 )
+
+[node name="coin91" parent="Level1/Objects/Coins" instance=ExtResource( 7 )]
+position = Vector2( 11764, 353 )
+
+[node name="coin92" parent="Level1/Objects/Coins" instance=ExtResource( 7 )]
+position = Vector2( 12108, 348 )
+
 [node name="Acid" type="Node" parent="Level1/Objects"]
 
 [node name="Acid" parent="Level1/Objects/Acid" instance=ExtResource( 6 )]
@@ -1134,6 +1200,16 @@ position = Vector2( 11935, 160 )
 level_number = 2
 door_name = "Door0"
 
+[node name="DoorMys" parent="Level1/Objects" instance=ExtResource( 4 )]
+position = Vector2( 11466, -32 )
+level_number = 1
+door_name = "DoorMys2"
+
+[node name="DoorMys2" parent="Level1/Objects" instance=ExtResource( 4 )]
+position = Vector2( 11938, 448 )
+level_number = 1
+door_name = "DoorMys"
+
 [node name="Enemies" type="Node2D" parent="Level1"]
 
 [node name="Skelletons" type="Node" parent="Level1/Enemies"]
@@ -1195,7 +1271,7 @@ position = Vector2( 10494, 354 )
 position = Vector2( 11167, 292 )
 
 [node name="Player" parent="Level1" instance=ExtResource( 1 )]
-position = Vector2( 482, 448 )
+position = Vector2( 449, 448 )
 collision_mask = 16
 
 [node name="Level" type="TileMap" parent="Level1"]
@@ -1314,3 +1390,25 @@ __meta__ = {
 [connection signal="coin_collected" from="Level1/Objects/Coins/coin5" to="Level1/Score" method="_on_coin_collected"]
 [connection signal="coin_collected" from="Level1/Objects/Coins/coin6" to="Level1/Score" method="_on_coin_collected"]
 [connection signal="coin_collected" from="Level1/Objects/Coins/coin2" to="Level1/Score" method="_on_coin_collected"]
+[connection signal="coin_collected" from="Level1/Objects/Coins/coin14" to="Level1/Score" method="_on_coin_collected"]
+[connection signal="coin_collected" from="Level1/Objects/Coins/coin15" to="Level1/Score" method="_on_coin_collected"]
+[connection signal="coin_collected" from="Level1/Objects/Coins/coin73" to="Level1/Score" method="_on_coin_collected"]
+[connection signal="coin_collected" from="Level1/Objects/Coins/coin74" to="Level1/Score" method="_on_coin_collected"]
+[connection signal="coin_collected" from="Level1/Objects/Coins/coin75" to="Level1/Score" method="_on_coin_collected"]
+[connection signal="coin_collected" from="Level1/Objects/Coins/coin76" to="Level1/Score" method="_on_coin_collected"]
+[connection signal="coin_collected" from="Level1/Objects/Coins/coin77" to="Level1/Score" method="_on_coin_collected"]
+[connection signal="coin_collected" from="Level1/Objects/Coins/coin78" to="Level1/Score" method="_on_coin_collected"]
+[connection signal="coin_collected" from="Level1/Objects/Coins/coin79" to="Level1/Score" method="_on_coin_collected"]
+[connection signal="coin_collected" from="Level1/Objects/Coins/coin80" to="Level1/Score" method="_on_coin_collected"]
+[connection signal="coin_collected" from="Level1/Objects/Coins/coin81" to="Level1/Score" method="_on_coin_collected"]
+[connection signal="coin_collected" from="Level1/Objects/Coins/coin82" to="Level1/Score" method="_on_coin_collected"]
+[connection signal="coin_collected" from="Level1/Objects/Coins/coin83" to="Level1/Score" method="_on_coin_collected"]
+[connection signal="coin_collected" from="Level1/Objects/Coins/coin84" to="Level1/Score" method="_on_coin_collected"]
+[connection signal="coin_collected" from="Level1/Objects/Coins/coin85" to="Level1/Score" method="_on_coin_collected"]
+[connection signal="coin_collected" from="Level1/Objects/Coins/coin86" to="Level1/Score" method="_on_coin_collected"]
+[connection signal="coin_collected" from="Level1/Objects/Coins/coin87" to="Level1/Score" method="_on_coin_collected"]
+[connection signal="coin_collected" from="Level1/Objects/Coins/coin88" to="Level1/Score" method="_on_coin_collected"]
+[connection signal="coin_collected" from="Level1/Objects/Coins/coin89" to="Level1/Score" method="_on_coin_collected"]
+[connection signal="coin_collected" from="Level1/Objects/Coins/coin90" to="Level1/Score" method="_on_coin_collected"]
+[connection signal="coin_collected" from="Level1/Objects/Coins/coin91" to="Level1/Score" method="_on_coin_collected"]
+[connection signal="coin_collected" from="Level1/Objects/Coins/coin92" to="Level1/Score" method="_on_coin_collected"]
