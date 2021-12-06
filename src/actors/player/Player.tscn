@@ -259,7 +259,7 @@ script = ExtResource( 2 )
 position = Vector2( 10, -24 )
 frames = SubResource( 38 )
 animation = "melee"
-frame = 4
+frame = 5
 playing = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -286,7 +286,6 @@ position = Vector2( 0, -15.5 )
 shape = SubResource( 39 )
 
 [node name="EnemyDetector" type="Area2D" parent="."]
-visible = false
 position = Vector2( 0, -16 )
 collision_layer = 0
 collision_mask = 2
@@ -313,3 +312,4 @@ shape = SubResource( 51 )
 [connection signal="body_entered" from="EnemyDetector" to="." method="_on_EnemyDetector_body_entered"]
 [connection signal="area_entered" from="StompDetector" to="." method="_on_StompDetector_area_entered"]
 [connection signal="body_entered" from="StompDetector" to="." method="_on_StompDetector_body_entered"]
+[connection signal="body_entered" from="MeleeDetector" to="." method="_on_MeleeDetector_body_entered"]
