@@ -28,7 +28,7 @@ var last_look_direction : Vector2
 const move_speed : float = 32*7/.8
 const jump_speed : int = -720
 const gravity : int = 1800
-const velocity_cap_v : int = 1000
+export var velocity_cap_v : int = 1000
 
 # keep these values between 0-1
 const friction : float = 0.25
