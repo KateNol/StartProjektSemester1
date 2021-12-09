@@ -63,9 +63,15 @@ func _ready():
 	hitpoints = 10
 	is_alive = true
 	
+	$Control/HealthBar.max_value = hitpoints
+	$Control/HealthBar.value = hitpoints
+	$Control/HealthBar.tint_progress = Color.green
 	$MeleeDetector.monitoring = false
 	
+	
 	print("ready")
+	set_black_white(false)
+
 
 func _process(delta):
 	if not is_alive:
@@ -205,7 +211,7 @@ func attack_process():
 		if attack_state == ATTACK_STATES.RANGED:
 			var b = FireBall.instance()
 			b.position = self.position
-			b.direction = self.last_look_direction
+			b.set_direction(self.last_look_direction) 
 			get_tree().current_scene.add_child(b)
 		if attack_state == ATTACK_STATES.MELEE:
 			print("melee")
@@ -228,12 +234,19 @@ func take_damage(n : int):
 	
 	animation_state = ANIMATION_STATES.HURT
 	hitpoints -= n
+	if hitpoints >= 7:
+		$Control/HealthBar.tint_progress = Color.green
+	elif hitpoints >= 3:
+		$Control/HealthBar.tint_progress = Color.orange
+	else:
+		$Control/HealthBar.tint_progress = Color.red
+	$Control/HealthBar.value = hitpoints
+	
 	if hitpoints <= 0:
 		print("dying")
 		animation_state = ANIMATION_STATES.DEATH
 		is_alive = false
 		update_animation()
-
 
 func take_damage_player(n : int):
 	take_damage(n)
@@ -268,9 +281,13 @@ func update_animation():
 		$AnimatedSprite.offset.x = 0
 		$MeleeDetector/CollisionShape2D.position.x = abs($MeleeDetector/CollisionShape2D.position.x)
 	
-	$Camera2D/InfoLabel.text = "is_moving: " + str(is_moving) + "\nis_jumping: " + str(is_jumping) + "\nis_attacking: " + str(is_attacking) + "\nvh: " + str(velocity.x) + "\nvv" + str(velocity.y) + "\nhp: " + str(hitpoints)
+	$InfoLabel.text = "is_moving: " + str(is_moving) + "\nis_jumping: " + str(is_jumping) + "\nis_attacking: " + str(is_attacking) + "\nvh: " + str(velocity.x) + "\nvv" + str(velocity.y) + "\nhp: " + str(hitpoints)
 	
-
+func set_black_white(boolean: bool):
+	if boolean:
+		$AnimatedSprite.material = load("res://src/actors/player/PlayerShader.tres")
+	else:
+		$AnimatedSprite.material = null
 
 """ SECTION SIGNAL FUNCTIONS """
 
@@ -309,3 +326,4 @@ func _on_StompDetector_body_entered(body):
 func _on_MeleeDetector_body_entered(body):
 	if body.is_in_group("enemy"):
 		body.take_damage(5)
+
