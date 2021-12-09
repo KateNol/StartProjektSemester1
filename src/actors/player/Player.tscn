@@ -55,73 +55,33 @@ region = Rect2( 144, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=23]
 flags = 4
-atlas = ExtResource( 8 )
+atlas = ExtResource( 3 )
 region = Rect2( 0, 0, 48, 48 )
 
-[sub_resource type="AtlasTexture" id=18]
+[sub_resource type="AtlasTexture" id=24]
 flags = 4
-atlas = ExtResource( 8 )
+atlas = ExtResource( 3 )
 region = Rect2( 48, 0, 48, 48 )
 
-[sub_resource type="AtlasTexture" id=19]
+[sub_resource type="AtlasTexture" id=25]
 flags = 4
-atlas = ExtResource( 8 )
+atlas = ExtResource( 3 )
 region = Rect2( 96, 0, 48, 48 )
 
-[sub_resource type="AtlasTexture" id=20]
+[sub_resource type="AtlasTexture" id=26]
 flags = 4
-atlas = ExtResource( 8 )
+atlas = ExtResource( 3 )
 region = Rect2( 144, 0, 48, 48 )
 
-[sub_resource type="AtlasTexture" id=21]
+[sub_resource type="AtlasTexture" id=27]
 flags = 4
-atlas = ExtResource( 8 )
+atlas = ExtResource( 3 )
 region = Rect2( 192, 0, 48, 48 )
 
-[sub_resource type="AtlasTexture" id=22]
+[sub_resource type="AtlasTexture" id=28]
 flags = 4
-atlas = ExtResource( 8 )
+atlas = ExtResource( 3 )
 region = Rect2( 240, 0, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=43]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 0, 0, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=44]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 48, 0, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=45]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 96, 0, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=46]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 144, 0, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=47]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 192, 0, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=48]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 240, 0, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=49]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 288, 0, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=50]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 336, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=5]
 flags = 4
@@ -163,16 +123,6 @@ flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 336, 0, 48, 48 )
 
-[sub_resource type="AtlasTexture" id=29]
-flags = 4
-atlas = ExtResource( 7 )
-region = Rect2( 48, 0, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=42]
-flags = 4
-atlas = ExtResource( 7 )
-region = Rect2( 0, 0, 48, 48 )
-
 [sub_resource type="AtlasTexture" id=17]
 flags = 4
 atlas = ExtResource( 8 )
@@ -203,6 +153,56 @@ flags = 4
 atlas = ExtResource( 8 )
 region = Rect2( 240, 0, 48, 48 )
 
+[sub_resource type="AtlasTexture" id=29]
+flags = 4
+atlas = ExtResource( 7 )
+region = Rect2( 48, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=42]
+flags = 4
+atlas = ExtResource( 7 )
+region = Rect2( 0, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=43]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=44]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 48, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=45]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 96, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=46]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 144, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=47]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 192, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=48]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 240, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=49]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 288, 0, 48, 48 )
+
+[sub_resource type="AtlasTexture" id=50]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 336, 0, 48, 48 )
+
 [sub_resource type="SpriteFrames" id=38]
 animations = [ {
 "frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
@@ -217,28 +217,28 @@ animations = [ {
 }, {
 "frames": [ SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ) ],
 "loop": true,
-"name": "punch",
+"name": "move",
 "speed": 5.0
-}, {
-"frames": [ SubResource( 43 ), SubResource( 44 ), SubResource( 45 ), SubResource( 46 ), SubResource( 47 ), SubResource( 48 ), SubResource( 49 ), SubResource( 50 ) ],
-"loop": true,
-"name": "melee",
-"speed": 17.0
 }, {
 "frames": [ SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ) ],
 "loop": true,
 "name": "attack1",
 "speed": 20.0
 }, {
+"frames": [ SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 22 ), SubResource( 22 ), SubResource( 22 ), SubResource( 22 ), SubResource( 22 ) ],
+"loop": false,
+"name": "death",
+"speed": 7.0
+}, {
 "frames": [ SubResource( 29 ), SubResource( 42 ), SubResource( 29 ), SubResource( 42 ), SubResource( 29 ), SubResource( 29 ), SubResource( 42 ) ],
 "loop": true,
 "name": "hurt",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 22 ), SubResource( 22 ), SubResource( 22 ), SubResource( 22 ), SubResource( 22 ) ],
-"loop": false,
-"name": "death",
-"speed": 7.0
+"frames": [ SubResource( 43 ), SubResource( 44 ), SubResource( 45 ), SubResource( 46 ), SubResource( 47 ), SubResource( 48 ), SubResource( 49 ), SubResource( 50 ) ],
+"loop": true,
+"name": "melee",
+"speed": 17.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=39]
@@ -248,10 +248,12 @@ extents = Vector2( 9.5, 15.5 )
 extents = Vector2( 14.4844, 15.5 )
 
 [sub_resource type="RectangleShape2D" id=41]
-extents = Vector2( 9.11914, 2.37328 )
+extents = Vector2( 9.11914, 2.77663 )
+
+[sub_resource type="RectangleShape2D" id=51]
+extents = Vector2( 12.751, 6.23259 )
 
 [node name="Player" type="KinematicBody2D" groups=["player"]]
-scale = Vector2( 1.35, 1.35 )
 collision_layer = 3
 collision_mask = 249
 collision/safe_margin = 0.01
@@ -262,7 +264,7 @@ material = ExtResource( 12 )
 position = Vector2( 10, -24 )
 frames = SubResource( 38 )
 animation = "melee"
-frame = 7
+frame = 5
 playing = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -277,7 +279,7 @@ smoothing_speed = 10.0
 
 [node name="InfoLabel" type="Label" parent="."]
 margin_left = -18.3265
-margin_top = -83.0373
+margin_top = -144.037
 margin_right = 21.6735
 margin_bottom = -113.037
 text = "test
@@ -303,7 +305,7 @@ shape = SubResource( 40 )
 position = Vector2( 0, -19 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StompDetector"]
-position = Vector2( 0, 16.8304 )
+position = Vector2( 0, 17.2338 )
 shape = SubResource( 41 )
 
 [node name="MeleeDetector" type="Area2D" parent="."]
@@ -341,3 +343,4 @@ __meta__ = {
 [connection signal="body_entered" from="EnemyDetector" to="." method="_on_EnemyDetector_body_entered"]
 [connection signal="area_entered" from="StompDetector" to="." method="_on_StompDetector_area_entered"]
 [connection signal="body_entered" from="StompDetector" to="." method="_on_StompDetector_body_entered"]
+[connection signal="body_entered" from="MeleeDetector" to="." method="_on_MeleeDetector_body_entered"]
