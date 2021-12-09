@@ -7,7 +7,8 @@
 [ext_resource path="res://src/assets/menu_assets/kb_w.png" type="Texture" id=5]
 [ext_resource path="res://src/assets/menu_assets/kb_a.png" type="Texture" id=6]
 [ext_resource path="res://src/assets/menu_assets/kb_d.png" type="Texture" id=7]
-[ext_resource path="res://src/scenes/Settings.gd" type="Script" id=8]
+[ext_resource path="res://src/scripts/Settings.gd" type="Script" id=8]
+
 
 [sub_resource type="DynamicFont" id=1]
 size = 50

@@ -1,10 +1,13 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/scenes/Fader.tscn" type="PackedScene" id=1]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends Node2D
 
 onready var in_game = $InGame
 onready var camera = $Camera2D
+onready var fader = $CanvasLayer/Fader
 var player = null
 
 var level = null
@@ -14,7 +17,7 @@ func _ready():
 	connect_to_doors()
 	check_for_door()
 	put_camera_on_player()
-	pass
+	fader.fade_in()
 	
 func add_level():
 	print(\"loading: \" + str(\"res://src/scenes/levels/Level\" , G.next_level_number , \".tscn\"))
@@ -33,6 +36,9 @@ func connect_to_doors():
 			child.connect(\"enter_door\", self, \"_on_enter_door\")
 			
 func _on_enter_door():
+	var animation_player = fader.fade_out()
+	yield(animation_player, \"animation_finished\")
+	get_tree().paused = false
 	get_tree().reload_current_scene()
 
 func check_for_door():
@@ -49,5 +55,10 @@ script = SubResource( 1 )
 [node name="InGame" type="Node2D" parent="."]
 
 [node name="Camera2D" type="Camera2D" parent="."]
+visible = false
 offset = Vector2( 0, -200 )
 current = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Fader" parent="CanvasLayer" instance=ExtResource( 1 )]

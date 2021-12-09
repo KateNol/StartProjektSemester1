@@ -1,6 +1,5 @@
 [gd_scene load_steps=56 format=2]
 
-[ext_resource path="res://src/assets/actors/Player/player_attack_melee.png" type="Texture" id=1]
 [ext_resource path="res://src/actors/player/Player.gd" type="Script" id=2]
 [ext_resource path="res://src/assets/actors/Player/player_run.png" type="Texture" id=3]
 [ext_resource path="res://src/assets/actors/Player/player_idle.png" type="Texture" id=4]
@@ -33,14 +32,9 @@ flags = 4
 atlas = ExtResource( 4 )
 region = Rect2( 144, 0, 48, 48 )
 
-[sub_resource type="AtlasTexture" id=13]
+[sub_resource type="AtlasTexture" id=29]
 flags = 4
-atlas = ExtResource( 5 )
-region = Rect2( 0, 0, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=14]
-flags = 4
-atlas = ExtResource( 5 )
+atlas = ExtResource( 7 )
 region = Rect2( 48, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=15]
@@ -210,10 +204,10 @@ animations = [ {
 "name": "idle",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ) ],
+"frames": [ SubResource( 29 ) ],
 "loop": true,
-"name": "jump",
-"speed": 2.0
+"name": "hurt",
+"speed": 5.0
 }, {
 "frames": [ SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ) ],
 "loop": true,
@@ -258,16 +252,18 @@ collision_layer = 3
 collision_mask = 249
 collision/safe_margin = 0.01
 script = ExtResource( 2 )
+velocity_cap_v = 800
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 material = ExtResource( 12 )
 position = Vector2( 10, -24 )
 frames = SubResource( 38 )
-animation = "melee"
+animation = "attack1"
 frame = 5
 playing = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 0, 50 )
 offset = Vector2( 0, -75 )
 current = true
 zoom = Vector2( 0.9, 0.9 )
