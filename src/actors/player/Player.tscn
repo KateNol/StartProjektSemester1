@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://src/actors/player/Player.gd" type="Script" id=2]
 [ext_resource path="res://src/assets/actors/Player/player_run.png" type="Texture" id=3]
@@ -6,11 +6,6 @@
 [ext_resource path="res://src/assets/actors/Player/player_jump.png" type="Texture" id=5]
 [ext_resource path="res://src/assets/actors/Player/player_attack3.png" type="Texture" id=6]
 [ext_resource path="res://src/assets/actors/Player/player_hurt.png" type="Texture" id=7]
-[ext_resource path="res://src/assets/actors/Player/player_death.png" type="Texture" id=8]
-[ext_resource path="res://src/assets/actors/Player/health-bar-under.png" type="Texture" id=9]
-[ext_resource path="res://src/assets/actors/Player/health-bar-over.png" type="Texture" id=10]
-[ext_resource path="res://src/assets/actors/Player/health_bar_health.png" type="Texture" id=11]
-[ext_resource path="res://src/actors/player/PlayerShader.tres" type="Material" id=12]
 
 [sub_resource type="AtlasTexture" id=1]
 flags = 4
@@ -30,21 +25,6 @@ region = Rect2( 96, 0, 48, 48 )
 [sub_resource type="AtlasTexture" id=4]
 flags = 4
 atlas = ExtResource( 4 )
-region = Rect2( 144, 0, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=29]
-flags = 4
-atlas = ExtResource( 7 )
-region = Rect2( 48, 0, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=15]
-flags = 4
-atlas = ExtResource( 5 )
-region = Rect2( 96, 0, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=16]
-flags = 4
-atlas = ExtResource( 5 )
 region = Rect2( 144, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=23]
@@ -117,96 +97,36 @@ flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 336, 0, 48, 48 )
 
-[sub_resource type="AtlasTexture" id=17]
+[sub_resource type="AtlasTexture" id=13]
 flags = 4
-atlas = ExtResource( 8 )
+atlas = ExtResource( 5 )
 region = Rect2( 0, 0, 48, 48 )
 
-[sub_resource type="AtlasTexture" id=18]
+[sub_resource type="AtlasTexture" id=14]
 flags = 4
-atlas = ExtResource( 8 )
+atlas = ExtResource( 5 )
 region = Rect2( 48, 0, 48, 48 )
 
-[sub_resource type="AtlasTexture" id=19]
+[sub_resource type="AtlasTexture" id=15]
 flags = 4
-atlas = ExtResource( 8 )
+atlas = ExtResource( 5 )
 region = Rect2( 96, 0, 48, 48 )
 
-[sub_resource type="AtlasTexture" id=20]
+[sub_resource type="AtlasTexture" id=16]
 flags = 4
-atlas = ExtResource( 8 )
+atlas = ExtResource( 5 )
 region = Rect2( 144, 0, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=21]
-flags = 4
-atlas = ExtResource( 8 )
-region = Rect2( 192, 0, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=22]
-flags = 4
-atlas = ExtResource( 8 )
-region = Rect2( 240, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=29]
 flags = 4
 atlas = ExtResource( 7 )
 region = Rect2( 48, 0, 48, 48 )
 
-[sub_resource type="AtlasTexture" id=42]
-flags = 4
-atlas = ExtResource( 7 )
-region = Rect2( 0, 0, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=43]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 0, 0, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=44]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 48, 0, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=45]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 96, 0, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=46]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 144, 0, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=47]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 192, 0, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=48]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 240, 0, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=49]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 288, 0, 48, 48 )
-
-[sub_resource type="AtlasTexture" id=50]
-flags = 4
-atlas = ExtResource( 1 )
-region = Rect2( 336, 0, 48, 48 )
-
 [sub_resource type="SpriteFrames" id=38]
 animations = [ {
 "frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
 "loop": true,
 "name": "idle",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 29 ) ],
-"loop": true,
-"name": "hurt",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ) ],
@@ -219,20 +139,15 @@ animations = [ {
 "name": "attack1",
 "speed": 20.0
 }, {
-"frames": [ SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 22 ), SubResource( 22 ), SubResource( 22 ), SubResource( 22 ), SubResource( 22 ) ],
-"loop": false,
-"name": "death",
-"speed": 7.0
+"frames": [ SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ) ],
+"loop": true,
+"name": "jump",
+"speed": 2.0
 }, {
-"frames": [ SubResource( 29 ), SubResource( 42 ), SubResource( 29 ), SubResource( 42 ), SubResource( 29 ), SubResource( 29 ), SubResource( 42 ) ],
+"frames": [ SubResource( 29 ) ],
 "loop": true,
 "name": "hurt",
 "speed": 5.0
-}, {
-"frames": [ SubResource( 43 ), SubResource( 44 ), SubResource( 45 ), SubResource( 46 ), SubResource( 47 ), SubResource( 48 ), SubResource( 49 ), SubResource( 50 ) ],
-"loop": true,
-"name": "melee",
-"speed": 17.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=39]
@@ -250,16 +165,15 @@ extents = Vector2( 12.751, 6.23259 )
 [node name="Player" type="KinematicBody2D" groups=["player"]]
 collision_layer = 3
 collision_mask = 249
-collision/safe_margin = 0.01
+collision/safe_margin = 0.5
 script = ExtResource( 2 )
 velocity_cap_v = 800
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-material = ExtResource( 12 )
 position = Vector2( 10, -24 )
 frames = SubResource( 38 )
 animation = "attack1"
-frame = 5
+frame = 7
 playing = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -273,13 +187,12 @@ drag_margin_v_enabled = true
 smoothing_enabled = true
 smoothing_speed = 10.0
 
-[node name="InfoLabel" type="Label" parent="."]
+[node name="InfoLabel" type="Label" parent="Camera2D"]
+visible = false
 margin_left = -18.3265
 margin_top = -144.037
 margin_right = 21.6735
-margin_bottom = -113.037
-text = "test
-"
+margin_bottom = -130.037
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -309,30 +222,6 @@ shape = SubResource( 41 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MeleeDetector"]
 position = Vector2( 22.3487, -20.622 )
 shape = SubResource( 51 )
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="Control" type="Control" parent="."]
-margin_left = -24.5817
-margin_top = -103.502
-margin_right = 15.4183
-margin_bottom = -63.502
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="HealthBar" type="TextureProgress" parent="Control"]
-margin_left = -4.83041
-margin_top = 40.0753
-margin_right = 54.1696
-margin_bottom = 49.0753
-max_value = 10.0
-texture_under = ExtResource( 9 )
-texture_over = ExtResource( 10 )
-texture_progress = ExtResource( 11 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
 [connection signal="area_entered" from="EnemyDetector" to="." method="_on_EnemyDetector_area_entered"]
