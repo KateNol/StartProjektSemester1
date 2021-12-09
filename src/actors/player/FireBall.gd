@@ -22,3 +22,7 @@ func _on_Area2D_body_entered(body : Node):
 	if body.is_in_group("enemyweapon"):
 		print("blocked")
 		queue_free()
+	if body.is_class("TileMap"):
+		queue_free()
+	#print("collided with " + str(body.name) + " - " + str(body.get_class()) + " - " +  str(body.get_groups()))
+
