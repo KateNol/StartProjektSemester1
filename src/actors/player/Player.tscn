@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=2]
+[gd_scene load_steps=56 format=2]
 
 [ext_resource path="res://src/assets/actors/Player/player_attack_melee.png" type="Texture" id=1]
 [ext_resource path="res://src/actors/player/Player.gd" type="Script" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://src/assets/actors/Player/health-bar-under.png" type="Texture" id=9]
 [ext_resource path="res://src/assets/actors/Player/health-bar-over.png" type="Texture" id=10]
 [ext_resource path="res://src/assets/actors/Player/health_bar_health.png" type="Texture" id=11]
+[ext_resource path="res://src/actors/player/PlayerShader.tres" type="Material" id=12]
 
 [sub_resource type="AtlasTexture" id=1]
 flags = 4
@@ -259,10 +260,11 @@ collision/safe_margin = 0.01
 script = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+material = ExtResource( 12 )
 position = Vector2( 10, -24 )
 frames = SubResource( 38 )
 animation = "melee"
-frame = 7
+frame = 5
 playing = true
 
 [node name="Camera2D" type="Camera2D" parent="."]

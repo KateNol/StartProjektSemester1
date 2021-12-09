@@ -68,7 +68,10 @@ func _ready():
 	$Control/HealthBar.tint_progress = Color.green
 	$MeleeDetector.monitoring = false
 	
+	
 	print("ready")
+	set_black_white(false)
+
 
 func _process(delta):
 	if not is_alive:
@@ -245,7 +248,6 @@ func take_damage(n : int):
 		is_alive = false
 		update_animation()
 
-
 func take_damage_player(n : int):
 	take_damage(n)
 
@@ -281,7 +283,11 @@ func update_animation():
 	
 	$InfoLabel.text = "is_moving: " + str(is_moving) + "\nis_jumping: " + str(is_jumping) + "\nis_attacking: " + str(is_attacking) + "\nvh: " + str(velocity.x) + "\nvv" + str(velocity.y) + "\nhp: " + str(hitpoints)
 	
-
+func set_black_white(boolean: bool):
+	if boolean:
+		$AnimatedSprite.material = load("res://src/actors/player/PlayerShader.tres")
+	else:
+		$AnimatedSprite.material = null
 
 """ SECTION SIGNAL FUNCTIONS """
 
