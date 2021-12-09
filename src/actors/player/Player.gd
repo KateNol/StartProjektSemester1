@@ -63,6 +63,9 @@ func _ready():
 	hitpoints = 10
 	is_alive = true
 	
+	$Control/HealthBar.max_value = hitpoints
+	$Control/HealthBar.value = hitpoints
+	$Control/HealthBar.tint_progress = Color.green
 	$MeleeDetector.monitoring = false
 	
 	print("ready")
@@ -228,6 +231,14 @@ func take_damage(n : int):
 	
 	animation_state = ANIMATION_STATES.HURT
 	hitpoints -= n
+	if hitpoints >= 7:
+		$Control/HealthBar.tint_progress = Color.green
+	elif hitpoints >= 3:
+		$Control/HealthBar.tint_progress = Color.orange
+	else:
+		$Control/HealthBar.tint_progress = Color.red
+	$Control/HealthBar.value = hitpoints
+	
 	if hitpoints <= 0:
 		print("dying")
 		animation_state = ANIMATION_STATES.DEATH
@@ -268,7 +279,7 @@ func update_animation():
 		$AnimatedSprite.offset.x = 0
 		$MeleeDetector/CollisionShape2D.position.x = abs($MeleeDetector/CollisionShape2D.position.x)
 	
-	$Camera2D/InfoLabel.text = "is_moving: " + str(is_moving) + "\nis_jumping: " + str(is_jumping) + "\nis_attacking: " + str(is_attacking) + "\nvh: " + str(velocity.x) + "\nvv" + str(velocity.y) + "\nhp: " + str(hitpoints)
+	$InfoLabel.text = "is_moving: " + str(is_moving) + "\nis_jumping: " + str(is_jumping) + "\nis_attacking: " + str(is_attacking) + "\nvh: " + str(velocity.x) + "\nvv" + str(velocity.y) + "\nhp: " + str(hitpoints)
 	
 
 
