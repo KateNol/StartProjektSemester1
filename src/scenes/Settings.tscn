@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://src/assets/menu_assets/spaceHintergrund.png" type="Texture" id=1]
 [ext_resource path="res://src/assets/menu_assets/04B_30__.TTF" type="DynamicFontData" id=2]
@@ -7,8 +7,8 @@
 [ext_resource path="res://src/assets/menu_assets/kb_w.png" type="Texture" id=5]
 [ext_resource path="res://src/assets/menu_assets/kb_a.png" type="Texture" id=6]
 [ext_resource path="res://src/assets/menu_assets/kb_d.png" type="Texture" id=7]
-[ext_resource path="res://src/scripts/Settings.gd" type="Script" id=8]
-
+[ext_resource path="res://src/scenes/Settings.gd" type="Script" id=8]
+[ext_resource path="res://src/assets/sounds/click1.wav" type="AudioStream" id=9]
 
 [sub_resource type="DynamicFont" id=1]
 size = 50
@@ -232,3 +232,8 @@ custom_styles/normal = SubResource( 16 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="buttonSound" type="AudioStreamPlayer" parent="."]
+pause_mode = 2
+stream = ExtResource( 9 )
+volume_db = 5.361

@@ -55,32 +55,32 @@ region = Rect2( 144, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=23]
 flags = 4
-atlas = ExtResource( 3 )
+atlas = ExtResource( 8 )
 region = Rect2( 0, 0, 48, 48 )
 
-[sub_resource type="AtlasTexture" id=24]
+[sub_resource type="AtlasTexture" id=18]
 flags = 4
-atlas = ExtResource( 3 )
+atlas = ExtResource( 8 )
 region = Rect2( 48, 0, 48, 48 )
 
-[sub_resource type="AtlasTexture" id=25]
+[sub_resource type="AtlasTexture" id=19]
 flags = 4
-atlas = ExtResource( 3 )
+atlas = ExtResource( 8 )
 region = Rect2( 96, 0, 48, 48 )
 
-[sub_resource type="AtlasTexture" id=26]
+[sub_resource type="AtlasTexture" id=20]
 flags = 4
-atlas = ExtResource( 3 )
+atlas = ExtResource( 8 )
 region = Rect2( 144, 0, 48, 48 )
 
-[sub_resource type="AtlasTexture" id=27]
+[sub_resource type="AtlasTexture" id=21]
 flags = 4
-atlas = ExtResource( 3 )
+atlas = ExtResource( 8 )
 region = Rect2( 192, 0, 48, 48 )
 
-[sub_resource type="AtlasTexture" id=28]
+[sub_resource type="AtlasTexture" id=22]
 flags = 4
-atlas = ExtResource( 3 )
+atlas = ExtResource( 8 )
 region = Rect2( 240, 0, 48, 48 )
 
 [sub_resource type="AtlasTexture" id=43]
@@ -217,7 +217,7 @@ animations = [ {
 }, {
 "frames": [ SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ) ],
 "loop": true,
-"name": "move",
+"name": "punch",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 43 ), SubResource( 44 ), SubResource( 45 ), SubResource( 46 ), SubResource( 47 ), SubResource( 48 ), SubResource( 49 ), SubResource( 50 ) ],
@@ -248,10 +248,7 @@ extents = Vector2( 9.5, 15.5 )
 extents = Vector2( 14.4844, 15.5 )
 
 [sub_resource type="RectangleShape2D" id=41]
-extents = Vector2( 9.11914, 2.77663 )
-
-[sub_resource type="RectangleShape2D" id=51]
-extents = Vector2( 12.751, 6.23259 )
+extents = Vector2( 9.11914, 2.37328 )
 
 [node name="Player" type="KinematicBody2D" groups=["player"]]
 scale = Vector2( 1.35, 1.35 )
@@ -280,7 +277,7 @@ smoothing_speed = 10.0
 
 [node name="InfoLabel" type="Label" parent="."]
 margin_left = -18.3265
-margin_top = -144.037
+margin_top = -83.0373
 margin_right = 21.6735
 margin_bottom = -113.037
 text = "test
@@ -306,7 +303,7 @@ shape = SubResource( 40 )
 position = Vector2( 0, -19 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StompDetector"]
-position = Vector2( 0, 17.2338 )
+position = Vector2( 0, 16.8304 )
 shape = SubResource( 41 )
 
 [node name="MeleeDetector" type="Area2D" parent="."]
@@ -344,4 +341,3 @@ __meta__ = {
 [connection signal="body_entered" from="EnemyDetector" to="." method="_on_EnemyDetector_body_entered"]
 [connection signal="area_entered" from="StompDetector" to="." method="_on_StompDetector_area_entered"]
 [connection signal="body_entered" from="StompDetector" to="." method="_on_StompDetector_body_entered"]
-[connection signal="body_entered" from="MeleeDetector" to="." method="_on_MeleeDetector_body_entered"]
