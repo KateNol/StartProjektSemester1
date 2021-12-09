@@ -211,7 +211,7 @@ func attack_process():
 		if attack_state == ATTACK_STATES.RANGED:
 			var b = FireBall.instance()
 			b.position = self.position
-			b.direction = self.last_look_direction
+			b.set_direction(self.last_look_direction) 
 			get_tree().current_scene.add_child(b)
 		if attack_state == ATTACK_STATES.MELEE:
 			print("melee")
