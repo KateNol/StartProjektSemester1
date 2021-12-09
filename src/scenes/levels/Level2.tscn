@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=2]
+[gd_scene load_steps=50 format=2]
 
 [ext_resource path="res://src/assets/tilesets/png-transparent-nebula-atmosphere-sky-nebula-space-astronomy-space-miscellaneous-purple-texture.png" type="Texture" id=1]
 [ext_resource path="res://src/assets/tilesets/main_scifi_tileset.png" type="Texture" id=2]
@@ -17,6 +17,7 @@
 [ext_resource path="res://src/actors/enemy/Skeleton.tscn" type="PackedScene" id=15]
 [ext_resource path="res://src/actors/enemy/wizard.tscn" type="PackedScene" id=16]
 [ext_resource path="res://src/actors/enemy/ghost.tscn" type="PackedScene" id=17]
+[ext_resource path="res://src/assets/sounds/coin1.wav" type="AudioStream" id=18]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
@@ -792,7 +793,6 @@ door_name = "Door0"
 
 [node name="DoorExit" parent="Level0/Objects" instance=ExtResource( 5 )]
 position = Vector2( 3761, 448 )
-level_number = 3
 door_name = "Door0"
 
 [node name="coin" parent="Level0/Objects" instance=ExtResource( 6 )]
@@ -938,7 +938,7 @@ scale = Vector2( 1.41689, 1.43723 )
 position = Vector2( 2131, 297 )
 
 [node name="Player" parent="Level0" instance=ExtResource( 4 )]
-position = Vector2( 482, 447 )
+position = Vector2( 1880, 385 )
 collision_mask = 16
 
 [node name="Level" type="TileMap" parent="Level0"]
@@ -980,13 +980,17 @@ margin_left = 1144.0
 margin_top = 24.0
 margin_right = 1264.0
 margin_bottom = 56.0
-custom_colors/font_color = Color( 0.988235, 1, 0.321569, 1 )
 custom_fonts/font = SubResource( 31 )
+custom_colors/font_color = Color( 0.988235, 1, 0.321569, 1 )
 align = 1
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="coinSound" type="AudioStreamPlayer" parent="Level0/Score"]
+stream = ExtResource( 18 )
+volume_db = 6.058
 
 [connection signal="coin_collected" from="Level0/Objects/coin" to="Level0/Score" method="_on_coin_collected"]
 [connection signal="coin_collected" from="Level0/Objects/coin2" to="Level0/Score" method="_on_coin_collected"]

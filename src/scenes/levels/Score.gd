@@ -7,4 +7,5 @@ func _ready():
 
 func _on_coin_collected():
 	coins = coins + 10
+	$coinSound.play()
 	_ready()
