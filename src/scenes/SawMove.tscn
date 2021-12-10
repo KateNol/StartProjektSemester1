@@ -1,0 +1,91 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://src/scenes/SawRotationMove.gd" type="Script" id=1]
+[ext_resource path="res://src/assets/FreeSciFiPlatformTileSet/png/Objects/Saw.png" type="Texture" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 0, 2 )
+
+[sub_resource type="CircleShape2D" id=5]
+radius = 177.982
+
+[sub_resource type="Curve2D" id=2]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 264, -84, 0, 0, 0, 0, 264, 7072 )
+}
+
+[sub_resource type="Animation" id=3]
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Path2D/PathFollow2D:unit_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "Updown"
+length = 80.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Path2D/PathFollow2D:unit_offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 40 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0 ]
+}
+
+[node name="Sawmoving" type="Node2D"]
+
+[node name="KinematicBody2D" type="KinematicBody2D" parent="."]
+position = Vector2( -1, 2 )
+motion/sync_to_physics = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]
+position = Vector2( 0, -2 )
+shape = SubResource( 1 )
+disabled = true
+
+[node name="Sprite" type="Sprite" parent="KinematicBody2D"]
+position = Vector2( -1, -3 )
+scale = Vector2( 0.359419, 0.360111 )
+texture = ExtResource( 3 )
+script = ExtResource( 1 )
+
+[node name="Area2D" type="Area2D" parent="KinematicBody2D/Sprite"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D/Sprite/Area2D"]
+position = Vector2( 5.56451, 2.77692 )
+shape = SubResource( 5 )
+
+[node name="Path2D" type="Path2D" parent="."]
+position = Vector2( -264, 85 )
+curve = SubResource( 2 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2( 264, -84 )
+rotate = false
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Path2D/PathFollow2D"]
+position = Vector2( -1, 1 )
+remote_path = NodePath("../../../KinematicBody2D")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Updown"
+playback_process_mode = 0
+anims/RESET = SubResource( 3 )
+anims/Updown = SubResource( 4 )
+
+[connection signal="body_entered" from="KinematicBody2D/Sprite/Area2D" to="KinematicBody2D/Sprite" method="_on_Area2D_body_entered"]
