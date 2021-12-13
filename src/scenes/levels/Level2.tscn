@@ -1,6 +1,5 @@
-[gd_scene load_steps=50 format=2]
+[gd_scene load_steps=49 format=2]
 
-[ext_resource path="res://src/assets/tilesets/png-transparent-nebula-atmosphere-sky-nebula-space-astronomy-space-miscellaneous-purple-texture.png" type="Texture" id=1]
 [ext_resource path="res://src/assets/tilesets/main_scifi_tileset.png" type="Texture" id=2]
 [ext_resource path="res://src/scenes/PauseController.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/actors/player/Player.tscn" type="PackedScene" id=4]
@@ -775,7 +774,7 @@ font_data = ExtResource( 8 )
 [node name="BackGroundPNG" type="Sprite" parent="Level0/ParallaxBackground"]
 position = Vector2( 646.653, 462.091 )
 scale = Vector2( 1.41689, 1.43723 )
-texture = ExtResource( 1 )
+texture = ExtResource( 2 )
 
 [node name="BackGround" type="TileMap" parent="Level0"]
 tile_set = SubResource( 12 )
@@ -980,8 +979,8 @@ margin_left = 1144.0
 margin_top = 24.0
 margin_right = 1264.0
 margin_bottom = 56.0
-custom_colors/font_color = Color( 0.988235, 1, 0.321569, 1 )
 custom_fonts/font = SubResource( 31 )
+custom_colors/font_color = Color( 0.988235, 1, 0.321569, 1 )
 align = 1
 valign = 1
 __meta__ = {
