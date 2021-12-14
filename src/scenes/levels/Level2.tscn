@@ -793,6 +793,7 @@ door_name = "Door0"
 
 [node name="DoorExit" parent="Level0/Objects" instance=ExtResource( 5 )]
 position = Vector2( 3761, 448 )
+level_number = 3
 door_name = "Door0"
 
 [node name="coin" parent="Level0/Objects" instance=ExtResource( 6 )]
