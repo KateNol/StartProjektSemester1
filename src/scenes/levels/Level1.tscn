@@ -1,7 +1,6 @@
-[gd_scene load_steps=46 format=2]
+[gd_scene load_steps=45 format=2]
 
 [ext_resource path="res://src/actors/player/Player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://src/assets/tilesets/png-transparent-nebula-atmosphere-sky-nebula-space-astronomy-space-miscellaneous-purple-texture.png" type="Texture" id=2]
 [ext_resource path="res://src/assets/tilesets/main_scifi_tileset.png" type="Texture" id=3]
 [ext_resource path="res://src/scenes/Door.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/scenes/shards.tscn" type="PackedScene" id=5]
@@ -832,7 +831,7 @@ font_data = ExtResource( 11 )
 [node name="BackGroundPNG" type="Sprite" parent="Level1/ParallaxBackground"]
 position = Vector2( 640.5, 368.667 )
 scale = Vector2( 1.49457, 1.79794 )
-texture = ExtResource( 2 )
+texture = ExtResource( 3 )
 
 [node name="BackGround" type="TileMap" parent="Level1"]
 tile_set = SubResource( 12 )
@@ -1146,7 +1145,7 @@ position = Vector2( 2097, 422 )
 position = Vector2( 3412, 326 )
 
 [node name="Node2D3" parent="Level1/Enemies/Skelletons" instance=ExtResource( 12 )]
-position = Vector2( 3728, 326 )
+position = Vector2( 4230.96, 396.324 )
 
 [node name="Node2D4" parent="Level1/Enemies/Skelletons" instance=ExtResource( 12 )]
 position = Vector2( 3536, 198 )
@@ -1196,7 +1195,7 @@ position = Vector2( 10494, 354 )
 position = Vector2( 11167, 292 )
 
 [node name="Player" parent="Level1" instance=ExtResource( 1 )]
-position = Vector2( 455, 448 )
+position = Vector2( 499.46, 426.182 )
 collision_mask = 16
 
 [node name="Level" type="TileMap" parent="Level1"]
@@ -1237,8 +1236,8 @@ margin_left = 1144.0
 margin_top = 24.0
 margin_right = 1264.0
 margin_bottom = 56.0
-custom_colors/font_color = Color( 0.988235, 1, 0.321569, 1 )
 custom_fonts/font = SubResource( 30 )
+custom_colors/font_color = Color( 0.988235, 1, 0.321569, 1 )
 align = 1
 valign = 1
 __meta__ = {
@@ -1247,7 +1246,7 @@ __meta__ = {
 
 [node name="coinSound" type="AudioStreamPlayer" parent="Level1/Score"]
 stream = ExtResource( 15 )
-volume_db = 6.058
+volume_db = -12.0
 
 [connection signal="coin_collected" from="Level1/Objects/Coins/coin" to="Level1/Score" method="_on_coin_collected"]
 [connection signal="coin_collected" from="Level1/Objects/Coins/coin3" to="Level1/Score" method="_on_coin_collected"]

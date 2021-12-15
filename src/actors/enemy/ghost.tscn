@@ -1,6 +1,10 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://src/assets/actors/Ghost/PNG/ghost-idle.png" type="Texture" id=1]
+[ext_resource path="res://src/assets/actors/Ghost/sound_ghost/qubodup-GhostMoan04.wav" type="AudioStream" id=2]
+[ext_resource path="res://src/assets/actors/Ghost/sound_ghost/qubodup-GhostMoan02.wav" type="AudioStream" id=3]
+[ext_resource path="res://src/assets/actors/Ghost/sound_ghost/qubodup-GhostMoan03.wav" type="AudioStream" id=5]
+[ext_resource path="res://src/assets/actors/Ghost/sound_ghost/qubodup-GhostMoan01.wav" type="AudioStream" id=6]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends KinematicBody2D
@@ -19,13 +23,17 @@ var is_hurt : bool
 const is_stompable = false
 
 func _ready():
+	$Sound_voice_1.play()
+	$Sound_voice_2.play()
+	$Sound_voice_3.play()
+	$Sound_voice_4.play()
 	$AnimatedSprite.play(\"idle\")
 
 
 func _physics_process(delta):
 	if is_alive == false:
 		return
-
+	
 	move_and_slide_with_snap(-direction, velocity, up_vector) 
 
 	if is_on_wall(): 
@@ -52,30 +60,37 @@ func _on_Area2D_body_entered(body):
 "
 
 [sub_resource type="AtlasTexture" id=2]
+flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 0, 0, 64, 80 )
 
 [sub_resource type="AtlasTexture" id=3]
+flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 64, 0, 64, 80 )
 
 [sub_resource type="AtlasTexture" id=4]
+flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 128, 0, 64, 80 )
 
 [sub_resource type="AtlasTexture" id=5]
+flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 192, 0, 64, 80 )
 
 [sub_resource type="AtlasTexture" id=6]
+flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 256, 0, 64, 80 )
 
 [sub_resource type="AtlasTexture" id=7]
+flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 320, 0, 64, 80 )
 
 [sub_resource type="AtlasTexture" id=8]
+flags = 4
 atlas = ExtResource( 1 )
 region = Rect2( 384, 0, 64, 80 )
 
@@ -116,5 +131,25 @@ shape = SubResource( 10 )
 modulate = Color( 1, 0.0470588, 0, 1 )
 position = Vector2( 0, -0.198421 )
 shape = SubResource( 11 )
+
+[node name="Sound_voice_1" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 6 )
+volume_db = -10.0
+attenuation = 4.28709
+
+[node name="Sound_voice_2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
+volume_db = -10.0
+attenuation = 4.28709
+
+[node name="Sound_voice_3" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 5 )
+volume_db = -10.0
+attenuation = 4.28
+
+[node name="Sound_voice_4" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 2 )
+volume_db = -10.0
+attenuation = 4.28709
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
