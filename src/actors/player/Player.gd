@@ -148,10 +148,12 @@ func input_process(delta):
 	if Input.is_action_just_pressed("attack"):
 		if !is_attacking:
 			attack = true
+			$Sound_fire.play()
 			attack_state = ATTACK_STATES.RANGED
 	if Input.is_action_just_pressed("melee"):
 		if !is_attacking:
 			attack = true
+			$Sound_attack.play()
 			attack_state = ATTACK_STATES.MELEE
 			
 	if Input.is_action_just_pressed("hit_self"):
@@ -165,6 +167,7 @@ func jump_process():
 	# jump, normal
 	if direction.y == -1 and is_on_floor():
 		print("normal")
+		$Sound_jump.play()
 		velocity.y = jump_speed
 		direction.y = 0
 	elif is_on_floor():
@@ -184,6 +187,7 @@ func jump_process():
 	# double jump
 	elif direction.y == -1 and not double_jump and not is_on_floor():
 		print("double-jump")
+		$Sound_jump2.play()
 		velocity.y = jump_speed
 		direction.y = 0
 		double_jump = true
@@ -231,7 +235,7 @@ func take_damage(n : int):
 	hurt_timer.connect("timeout", self, "hurt_timer_timeout")
 	add_child(hurt_timer)
 	hurt_timer.start()
-	
+	$Sound_hurt.play()
 	animation_state = ANIMATION_STATES.HURT
 	hitpoints -= n
 	if hitpoints >= 7:
@@ -244,6 +248,7 @@ func take_damage(n : int):
 	
 	if hitpoints <= 0:
 		print("dying")
+		$Sound_die.play()
 		animation_state = ANIMATION_STATES.DEATH
 		is_alive = false
 		update_animation()
