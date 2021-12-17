@@ -5,7 +5,7 @@
 [ext_resource path="res://src/assets/menu_assets/ButtonTextur.png" type="Texture" id=3]
 [ext_resource path="res://src/assets/menu_assets/Geist SpriteSheet.png" type="Texture" id=4]
 [ext_resource path="res://src/assets/menu_assets/ButtonTexturHover.png" type="Texture" id=5]
-[ext_resource path="res://src/scenes/Menu.gd" type="Script" id=6]
+[ext_resource path="res://src/scripts/Menu.gd" type="Script" id=6]
 [ext_resource path="res://src/assets/sounds/click1.wav" type="AudioStream" id=7]
 
 [sub_resource type="DynamicFont" id=1]
@@ -16,6 +16,13 @@ extra_spacing_space = -21
 font_data = ExtResource( 2 )
 
 [sub_resource type="Theme" id=2]
+
+[sub_resource type="DynamicFont" id=6]
+size = 32
+outline_size = 4
+outline_color = Color( 0, 0, 0, 1 )
+extra_spacing_bottom = 6
+font_data = ExtResource( 2 )
 
 [sub_resource type="StyleBoxTexture" id=3]
 texture = ExtResource( 5 )
@@ -29,11 +36,12 @@ region_rect = Rect2( 0, 0, 361, 101 )
 texture = ExtResource( 3 )
 region_rect = Rect2( 0, 0, 361, 101 )
 
-[sub_resource type="DynamicFont" id=6]
-size = 32
+[sub_resource type="DynamicFont" id=10]
+size = 22
 outline_size = 4
 outline_color = Color( 0, 0, 0, 1 )
-extra_spacing_bottom = 6
+extra_spacing_bottom = 3
+extra_spacing_char = 2
 font_data = ExtResource( 2 )
 
 [sub_resource type="StyleBoxTexture" id=7]
@@ -48,12 +56,12 @@ region_rect = Rect2( 0, 0, 361, 101 )
 texture = ExtResource( 3 )
 region_rect = Rect2( 0, 0, 361, 101 )
 
-[sub_resource type="DynamicFont" id=10]
-size = 22
+[sub_resource type="DynamicFont" id=14]
+size = 32
 outline_size = 4
 outline_color = Color( 0, 0, 0, 1 )
-extra_spacing_bottom = 3
-extra_spacing_char = 2
+extra_spacing_bottom = 5
+extra_spacing_char = 5
 font_data = ExtResource( 2 )
 
 [sub_resource type="StyleBoxTexture" id=11]
@@ -67,14 +75,6 @@ region_rect = Rect2( 0, 0, 361, 101 )
 [sub_resource type="StyleBoxTexture" id=13]
 texture = ExtResource( 3 )
 region_rect = Rect2( 0, 0, 361, 101 )
-
-[sub_resource type="DynamicFont" id=14]
-size = 32
-outline_size = 4
-outline_color = Color( 0, 0, 0, 1 )
-extra_spacing_bottom = 5
-extra_spacing_char = 5
-font_data = ExtResource( 2 )
 
 [sub_resource type="AtlasTexture" id=15]
 flags = 4
@@ -139,10 +139,10 @@ margin_top = -108.0
 margin_right = 449.0
 margin_bottom = -40.0
 theme = SubResource( 2 )
+custom_fonts/font = SubResource( 6 )
 custom_styles/hover = SubResource( 3 )
 custom_styles/pressed = SubResource( 4 )
 custom_styles/normal = SubResource( 5 )
-custom_fonts/font = SubResource( 6 )
 text = "START"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -153,10 +153,10 @@ margin_left = 130.0
 margin_top = 384.0
 margin_right = 450.0
 margin_bottom = 448.0
+custom_fonts/font = SubResource( 10 )
 custom_styles/hover = SubResource( 7 )
 custom_styles/pressed = SubResource( 8 )
 custom_styles/normal = SubResource( 9 )
-custom_fonts/font = SubResource( 10 )
 text = "EINSTELLUNGEN"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -167,10 +167,10 @@ margin_left = 128.0
 margin_top = 512.0
 margin_right = 448.0
 margin_bottom = 576.0
+custom_fonts/font = SubResource( 14 )
 custom_styles/hover = SubResource( 11 )
 custom_styles/pressed = SubResource( 12 )
 custom_styles/normal = SubResource( 13 )
-custom_fonts/font = SubResource( 14 )
 text = "ENDE"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -180,6 +180,7 @@ __meta__ = {
 position = Vector2( 1080, 248 )
 scale = Vector2( 2.81113, 2.65621 )
 frames = SubResource( 18 )
+frame = 2
 speed_scale = 0.8
 playing = true
 

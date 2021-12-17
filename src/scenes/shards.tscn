@@ -1,7 +1,8 @@
 [gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://src/assets/colleticbles/crystal-qubodup-ccby3-32-green.png" type="Texture" id=1]
-[ext_resource path="res://src/scenes/shards.gd" type="Script" id=2]
+[ext_resource path="res://src/scripts/shards.gd" type="Script" id=2]
+
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 25.2982

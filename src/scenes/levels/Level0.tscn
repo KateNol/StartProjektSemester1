@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=2]
+[gd_scene load_steps=55 format=2]
 
 [ext_resource path="res://src/assets/backGround/SpaceBackGroundParallax.jpg" type="Texture" id=1]
 [ext_resource path="res://src/assets/tilesets/main_scifi_tileset.png" type="Texture" id=2]
@@ -9,7 +9,7 @@
 [ext_resource path="res://src/scenes/shards.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/assets/menu_assets/04B_30__.TTF" type="DynamicFontData" id=8]
 [ext_resource path="res://src/assets/colleticbles/coin/gold_1.png" type="Texture" id=9]
-[ext_resource path="res://src/scenes/levels/Score.gd" type="Script" id=10]
+[ext_resource path="res://src/scripts/Score.gd" type="Script" id=10]
 [ext_resource path="res://src/actors/enemy/wizard.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/actors/enemy/Skeleton.tscn" type="PackedScene" id=12]
 [ext_resource path="res://src/actors/enemy/ghost.tscn" type="PackedScene" id=13]
@@ -20,6 +20,8 @@
 [ext_resource path="res://src/scenes/Platforms/Box4.tscn" type="PackedScene" id=18]
 [ext_resource path="res://src/scenes/Platforms/Bodenlol.tscn" type="PackedScene" id=19]
 [ext_resource path="res://src/scenes/Platforms/Wandlol.tscn" type="PackedScene" id=20]
+[ext_resource path="res://src/scripts/DoorExit.gd" type="Script" id=21]
+[ext_resource path="res://src/assets/FreeSciFiPlatformTileSet/png/Objects/DoorOpenResized.png" type="Texture" id=22]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
@@ -352,6 +354,9 @@ func _physics_process(delta):
 
 
 "
+
+[sub_resource type="RectangleShape2D" id=32]
+extents = Vector2( 22.71, 7.42306 )
 
 [sub_resource type="ConvexPolygonShape2D" id=14]
 points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
@@ -806,10 +811,20 @@ script = SubResource( 13 )
 level_number = 4
 door_name = "Door0"
 
-[node name="DoorExit" parent="Level0/Objects" instance=ExtResource( 5 )]
+[node name="DoorExit" type="Node2D" parent="Level0/Objects"]
 position = Vector2( 4353, 480 )
-level_number = 4
-door_name = "DoorExit"
+script = ExtResource( 21 )
+
+[node name="Sprite" type="Sprite" parent="Level0/Objects/DoorExit"]
+position = Vector2( 0, -48 )
+texture = ExtResource( 22 )
+
+[node name="Area2D" type="Area2D" parent="Level0/Objects/DoorExit"]
+position = Vector2( 0, -48 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level0/Objects/DoorExit/Area2D"]
+position = Vector2( 0, 35 )
+shape = SubResource( 32 )
 
 [node name="shards" parent="Level0/Objects" instance=ExtResource( 7 )]
 position = Vector2( 1189.47, -422.58 )
@@ -882,8 +897,8 @@ margin_left = 1144.0
 margin_top = 24.0
 margin_right = 1264.0
 margin_bottom = 56.0
-custom_fonts/font = SubResource( 31 )
 custom_colors/font_color = Color( 0.988235, 1, 0.321569, 1 )
+custom_fonts/font = SubResource( 31 )
 align = 1
 valign = 1
 __meta__ = {
