@@ -43,14 +43,11 @@ animations = [ {
 
 [sub_resource type="RectangleShape2D" id=3]
 
-[node name="Node2D" type="Node2D" groups=[
-"enemy_weapon",
-]]
+[node name="Node2D" type="Node2D" groups=["enemy_weapon"]]
 script = SubResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 2 )
-frame = 1
 playing = true
 
 [node name="Area2D" type="Area2D" parent="."]

@@ -330,5 +330,5 @@ func _on_StompDetector_body_entered(body):
 
 func _on_MeleeDetector_body_entered(body):
 	if body.is_in_group("enemy"):
-		body.take_damage(5)
+		body.take_damage(3)
 
