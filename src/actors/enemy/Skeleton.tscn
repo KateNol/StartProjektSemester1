@@ -35,11 +35,11 @@ var is_alive = true
 var is_moving_right = true
 const is_stompable = true
 
-var healthpoints
+var healthpoints = 10
 
 func _ready():
 	
-	healthpoints = 3
+	healthpoints = 10
 	is_alive = true
 	
 	$Control/HealthBar.max_value = healthpoints
@@ -124,14 +124,14 @@ func _on_Area2D_body_entered(body):
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
-"frames": [ ExtResource( 13 ), ExtResource( 13 ), ExtResource( 13 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ) ],
-"loop": true,
-"name": "dead",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 3 ), ExtResource( 5 ), ExtResource( 4 ), ExtResource( 1 ), ExtResource( 6 ), ExtResource( 8 ), ExtResource( 7 ), ExtResource( 2 ) ],
 "loop": true,
 "name": "walk",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 13 ), ExtResource( 13 ), ExtResource( 13 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ) ],
+"loop": true,
+"name": "dead",
 "speed": 5.0
 } ]
 
@@ -141,9 +141,13 @@ extents = Vector2( 13.047, 22.6729 )
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 15.8205, 22.4895 )
 
-[node name="Node2D" type="Node2D" groups=["enemy"]]
+[node name="Node2D" type="Node2D" groups=[
+"enemy",
+]]
 
-[node name="Skeleton" type="KinematicBody2D" parent="." groups=["enemy"]]
+[node name="Skeleton" type="KinematicBody2D" parent="." groups=[
+"enemy",
+]]
 collision_layer = 8
 collision_mask = 13
 script = SubResource( 1 )
@@ -152,7 +156,7 @@ script = SubResource( 1 )
 position = Vector2( 0.18729, 0 )
 frames = SubResource( 2 )
 animation = "walk"
-frame = 7
+frame = 3
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Skeleton"]

@@ -53,7 +53,6 @@ const invincible_cooldown : float = .2
 
 const stomp_velocity : int = -300
 
-export var grey_scale: bool = false
 
 """ SECTION OVERRIDE FUNCTIONS """
 
@@ -69,8 +68,9 @@ func _ready():
 	$Control/HealthBar.tint_progress = Color.green
 	$MeleeDetector.monitoring = false
 	
-	set_black_white(grey_scale)
+	
 	print("ready")
+	set_black_white(false)
 
 
 func _process(delta):
@@ -330,5 +330,5 @@ func _on_StompDetector_body_entered(body):
 
 func _on_MeleeDetector_body_entered(body):
 	if body.is_in_group("enemy"):
-		body.take_damage(3)
+		body.take_damage(5)
 

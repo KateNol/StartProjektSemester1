@@ -9,3 +9,9 @@ func _on_coin_collected():
 	coins = coins + 10
 	$coinSound.play()
 	_ready()
+
+func _on_shard_collected():
+	coins = coins + 50
+	$shardSound.play()
+	_ready()
+

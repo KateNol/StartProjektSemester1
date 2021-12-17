@@ -67,7 +67,7 @@ position = Vector2( 0, 8 )
 scale = Vector2( 2.09375, 1.5625 )
 frames = SubResource( 10 )
 animation = "spin"
-frame = 2
+frame = 4
 playing = true
 
 [node name="coinSound" type="AudioStreamPlayer" parent="."]
