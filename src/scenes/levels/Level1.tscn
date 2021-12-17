@@ -17,7 +17,6 @@
 [ext_resource path="res://src/assets/sounds/coin1.wav" type="AudioStream" id=15]
 [ext_resource path="res://src/assets/backGround/SpaceBackGroundParallax.jpg" type="Texture" id=16]
 
-
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 
@@ -1151,7 +1150,7 @@ position = Vector2( 2097, 422 )
 position = Vector2( 3412, 326 )
 
 [node name="Node2D3" parent="Level1/Enemies/Skelletons" instance=ExtResource( 12 )]
-position = Vector2( 4230.96, 396.324 )
+position = Vector2( 3720, 325 )
 
 [node name="Node2D4" parent="Level1/Enemies/Skelletons" instance=ExtResource( 12 )]
 position = Vector2( 3536, 198 )
