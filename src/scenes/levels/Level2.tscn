@@ -942,6 +942,7 @@ position = Vector2( 2131, 297 )
 [node name="Player" parent="Level0" instance=ExtResource( 4 )]
 position = Vector2( 528, 422.454 )
 collision_mask = 16
+grey_scale = true
 
 [node name="Level" type="TileMap" parent="Level0"]
 tile_set = SubResource( 29 )
