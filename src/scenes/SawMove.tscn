@@ -1,7 +1,8 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://src/scenes/SawRotationMove.gd" type="Script" id=1]
+[ext_resource path="res://src/scripts/SawRotationMove.gd" type="Script" id=1]
 [ext_resource path="res://src/assets/FreeSciFiPlatformTileSet/png/Objects/Saw.png" type="Texture" id=3]
+
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 0, 2 )

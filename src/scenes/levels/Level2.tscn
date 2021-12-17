@@ -9,7 +9,7 @@
 [ext_resource path="res://src/scenes/shards.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/assets/menu_assets/04B_30__.TTF" type="DynamicFontData" id=8]
 [ext_resource path="res://src/assets/colleticbles/coin/gold_1.png" type="Texture" id=9]
-[ext_resource path="res://src/scenes/levels/Score.gd" type="Script" id=10]
+[ext_resource path="res://src/scripts/Score.gd" type="Script" id=10]
 [ext_resource path="res://src/scenes/Acid.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/scenes/Saw.tscn" type="PackedScene" id=12]
 [ext_resource path="res://src/scenes/spike.tscn" type="PackedScene" id=13]
@@ -19,6 +19,7 @@
 [ext_resource path="res://src/actors/enemy/ghost.tscn" type="PackedScene" id=17]
 [ext_resource path="res://src/assets/sounds/coin1.wav" type="AudioStream" id=18]
 [ext_resource path="res://src/assets/backGround/SpaceBackGroundParallax.jpg" type="Texture" id=19]
+
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )

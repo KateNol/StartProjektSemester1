@@ -8,7 +8,7 @@
 [ext_resource path="res://src/scenes/Acid.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/scenes/coin.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/scenes/PauseController.tscn" type="PackedScene" id=8]
-[ext_resource path="res://src/scenes/levels/Score.gd" type="Script" id=9]
+[ext_resource path="res://src/scripts/Score.gd" type="Script" id=9]
 [ext_resource path="res://src/assets/colleticbles/coin/gold_1.png" type="Texture" id=10]
 [ext_resource path="res://src/assets/menu_assets/04B_30__.TTF" type="DynamicFontData" id=11]
 [ext_resource path="res://src/actors/enemy/Skeleton.tscn" type="PackedScene" id=12]
@@ -1150,7 +1150,7 @@ position = Vector2( 2097, 422 )
 position = Vector2( 3412, 326 )
 
 [node name="Node2D3" parent="Level1/Enemies/Skelletons" instance=ExtResource( 12 )]
-position = Vector2( 4230.96, 396.324 )
+position = Vector2( 3720, 325 )
 
 [node name="Node2D4" parent="Level1/Enemies/Skelletons" instance=ExtResource( 12 )]
 position = Vector2( 3536, 198 )

@@ -10,7 +10,7 @@ _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 264, 0 )
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=3]
 resource_name = "Level4"
 length = 2.0
 loop = true
@@ -27,8 +27,7 @@ tracks/0/keys = {
 "values": [ 0.0, 0.99 ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "Neue Animation1"
+[sub_resource type="Animation" id=4]
 length = 2.0
 loop = true
 tracks/0/type = "value"
@@ -44,8 +43,7 @@ tracks/0/keys = {
 "values": [ 0.0 ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "Neue Animation2"
+[sub_resource type="Animation" id=5]
 length = 2.0
 loop = true
 tracks/0/type = "value"
@@ -66,7 +64,7 @@ resource_name = "PFHFast"
 length = 2.0
 loop = true
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=7]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/path = NodePath("Path2D/PathFollow2D:unit_offset")
@@ -84,7 +82,6 @@ tracks/0/keys = {
 [node name="PlatformFunctional" type="Node2D"]
 
 [node name="KinematicBody2D" type="KinematicBody2D" parent="."]
-position = Vector2( 200.432, 0 )
 motion/sync_to_physics = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]
@@ -99,8 +96,6 @@ region_rect = Rect2( 801, 610, 160, 17 )
 curve = SubResource( 2 )
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
-position = Vector2( 200.432, 0 )
-offset = 200.254
 rotate = false
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Path2D/PathFollow2D"]
@@ -108,10 +103,9 @@ remote_path = NodePath("../../../KinematicBody2D")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Level4"
-reset_on_save = false
 playback_process_mode = 0
-anims/Level4 = SubResource( 7 )
-"anims/Neue Animation1" = SubResource( 3 )
-"anims/Neue Animation2" = SubResource( 4 )
+anims/Level4 = SubResource( 3 )
+"anims/Neue Animation1" = SubResource( 4 )
+"anims/Neue Animation2" = SubResource( 5 )
 anims/PFHFast = SubResource( 6 )
-anims/RESET = SubResource( 5 )
+anims/RESET = SubResource( 7 )
