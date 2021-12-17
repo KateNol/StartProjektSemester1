@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=2]
+[gd_scene load_steps=54 format=2]
 
 [ext_resource path="res://src/scenes/Door.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/scenes/spike.tscn" type="PackedScene" id=2]
@@ -19,6 +19,7 @@
 [ext_resource path="res://src/scenes/Platforms/PFHSlow.tscn" type="PackedScene" id=17]
 [ext_resource path="res://src/scenes/levels/Score.gd" type="Script" id=18]
 [ext_resource path="res://src/assets/menu_assets/04B_30__.TTF" type="DynamicFontData" id=19]
+[ext_resource path="res://src/assets/backGround/SpaceBackGroundParallax.jpg" type="Texture" id=20]
 [ext_resource path="res://src/assets/tilesets/main_scifi_tileset.png" type="Texture" id=21]
 [ext_resource path="res://src/assets/colleticbles/coin/gold_1.png" type="Texture" id=22]
 
@@ -776,8 +777,9 @@ font_data = ExtResource( 19 )
 [node name="ParallaxBackground" type="ParallaxBackground" parent="Level0"]
 
 [node name="BackGroundPNG" type="Sprite" parent="Level0/ParallaxBackground"]
-position = Vector2( 555.711, 351.167 )
-scale = Vector2( 1.61459, 1.86551 )
+position = Vector2( 642, 362.5 )
+scale = Vector2( 0.682292, 0.693518 )
+texture = ExtResource( 20 )
 
 [node name="BackGround" type="TileMap" parent="Level0"]
 tile_set = SubResource( 12 )

@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=2]
+[gd_scene load_steps=47 format=2]
 
 [ext_resource path="res://src/actors/player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/assets/sounds/kristallsound.wav" type="AudioStream" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://src/actors/enemy/enemy_knight.tscn" type="PackedScene" id=13]
 [ext_resource path="res://src/scenes/Saw.tscn" type="PackedScene" id=14]
 [ext_resource path="res://src/assets/sounds/coin1.wav" type="AudioStream" id=15]
+[ext_resource path="res://src/assets/backGround/SpaceBackGroundParallax.jpg" type="Texture" id=16]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
@@ -830,9 +831,9 @@ font_data = ExtResource( 11 )
 [node name="ParallaxBackground" type="ParallaxBackground" parent="Level1"]
 
 [node name="BackGroundPNG" type="Sprite" parent="Level1/ParallaxBackground"]
-position = Vector2( 640.5, 368.667 )
-scale = Vector2( 1.49457, 1.79794 )
-texture = ExtResource( 3 )
+position = Vector2( 642, 362.5 )
+scale = Vector2( 0.682292, 0.693518 )
+texture = ExtResource( 16 )
 
 [node name="BackGround" type="TileMap" parent="Level1"]
 tile_set = SubResource( 12 )
