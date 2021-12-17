@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=2]
+[gd_scene load_steps=52 format=2]
 
 [ext_resource path="res://src/assets/backGround/SpaceBackGroundParallax.jpg" type="Texture" id=1]
 [ext_resource path="res://src/assets/tilesets/main_scifi_tileset.png" type="Texture" id=2]
@@ -14,6 +14,12 @@
 [ext_resource path="res://src/actors/enemy/Skeleton.tscn" type="PackedScene" id=12]
 [ext_resource path="res://src/actors/enemy/ghost.tscn" type="PackedScene" id=13]
 [ext_resource path="res://src/actors/enemy/enemy_knight.tscn" type="PackedScene" id=14]
+[ext_resource path="res://src/scenes/Platforms/Box1.tscn" type="PackedScene" id=15]
+[ext_resource path="res://src/scenes/Platforms/Box2.tscn" type="PackedScene" id=16]
+[ext_resource path="res://src/scenes/Platforms/Box3.tscn" type="PackedScene" id=17]
+[ext_resource path="res://src/scenes/Platforms/Box4.tscn" type="PackedScene" id=18]
+[ext_resource path="res://src/scenes/Platforms/Bodenlol.tscn" type="PackedScene" id=19]
+[ext_resource path="res://src/scenes/Platforms/Wandlol.tscn" type="PackedScene" id=20]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
@@ -788,6 +794,12 @@ tile_data = PoolIntArray( 524369, 1, 0, 524370, 1, 0, 524371, 1, 0, 524372, 1, 0
 
 [node name="Objects" type="Node2D" parent="Level0"]
 
+[node name="PlatformFunctional" parent="Level0/Objects" instance=ExtResource( 16 )]
+position = Vector2( 458.805, 416.494 )
+
+[node name="PlatformFunctional2" parent="Level0/Objects" instance=ExtResource( 17 )]
+position = Vector2( 316.589, 417.178 )
+
 [node name="Door0" parent="Level0/Objects" instance=ExtResource( 5 )]
 position = Vector2( 384, 480 )
 script = SubResource( 13 )
@@ -806,6 +818,12 @@ position = Vector2( 1189.47, -422.58 )
 
 [node name="coin" parent="Level0/Objects/Coins" instance=ExtResource( 6 )]
 position = Vector2( 857, -410.017 )
+
+[node name="PlatformFunctional3" parent="Level0/Objects" instance=ExtResource( 18 )]
+position = Vector2( 388.206, 344.908 )
+
+[node name="Node2D" parent="Level0/Objects" instance=ExtResource( 19 )]
+position = Vector2( 2212.28, 523.169 )
 
 [node name="Enemies" type="Node2D" parent="Level0"]
 
@@ -864,12 +882,21 @@ margin_left = 1144.0
 margin_top = 24.0
 margin_right = 1264.0
 margin_bottom = 56.0
-custom_colors/font_color = Color( 0.988235, 1, 0.321569, 1 )
 custom_fonts/font = SubResource( 31 )
+custom_colors/font_color = Color( 0.988235, 1, 0.321569, 1 )
 align = 1
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="PlatformFunctional" parent="." instance=ExtResource( 15 )]
+position = Vector2( 387.174, 488.561 )
+
+[node name="Node2D" parent="." instance=ExtResource( 20 )]
+position = Vector2( 4537.26, 323.665 )
+
+[node name="Node2D2" parent="." instance=ExtResource( 20 )]
+position = Vector2( -110.718, 320.836 )
 
 [connection signal="coin_collected" from="Level0/Objects/Coins/coin" to="Level0/Score" method="_on_coin_collected"]
