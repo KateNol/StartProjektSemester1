@@ -286,7 +286,7 @@ func update_animation():
 		$AnimatedSprite.offset.x = 0
 		$MeleeDetector/CollisionShape2D.position.x = abs($MeleeDetector/CollisionShape2D.position.x)
 	
-	$InfoLabel.text = "is_moving: " + str(is_moving) + "\nis_jumping: " + str(is_jumping) + "\nis_attacking: " + str(is_attacking) + "\nvh: " + str(velocity.x) + "\nvv" + str(velocity.y) + "\nhp: " + str(hitpoints)
+	$InfoLabel.text = "" # "is_moving: " + str(is_moving) + "\nis_jumping: " + str(is_jumping) + "\nis_attacking: " + str(is_attacking) + "\nvh: " + str(velocity.x) + "\nvv" + str(velocity.y) + "\nhp: " + str(hitpoints)
 	
 func set_black_white(boolean: bool):
 	if boolean:
